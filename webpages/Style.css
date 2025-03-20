@@ -18,7 +18,6 @@ html {
     height: 300px;
     width: auto;
     background-image: url(/csd/Moffat-Bay/images/Lighthouse1.png);
-    background-size: cover; /* Ensure the background image covers the entire div */
     align-content: center;
     color: black;
     padding-top: 30px; /* Reduced the padding to move the title up */
