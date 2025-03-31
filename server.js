@@ -18,9 +18,10 @@ app.use(express.json());
 app.use(routes);
 
 // if a view is not found, return 404
-app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-});
+// not yet implemented
+// app.use((req, res) => {
+//     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+// });
 
 // start the server
 app.listen(PORT, () => {

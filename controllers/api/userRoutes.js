@@ -19,7 +19,7 @@ router.post('/createUser', async (req, res) => {
   });
 
 //log in user
-// will look like http://localhost:3001/api
+// will look like http://localhost:3001/api/users/loginUser
 router.post('/loginUser', async (req, res) => {
     try {
         const loginMessage = {
