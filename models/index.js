@@ -8,8 +8,9 @@
 // Violet Gonzalez 
 
 // Import your models
-const User = require('./user');
-const Reservation = require('./reservation');
+const User = require('./User');
+const Reservation = require('./Reservation');
+const Room = require('./Room')
 
 // Define associations
 User.hasMany(Reservation, {
@@ -21,8 +22,13 @@ Reservation.belongsTo(User, {
   foreignKey: 'user_id'
 })
 
+Reservation.belongsTo(Room, {
+  foreignKey: 'room_id'
+})
+
 // Export models and sequelize
 module.exports = {
   User,
-  Reservation
+  Reservation,
+  Room
 };

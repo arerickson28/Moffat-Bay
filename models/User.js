@@ -16,7 +16,7 @@ const User = sequelize.define('User', {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
-},
+  },
   first_name: {
     type: DataTypes.STRING(50),
     allowNull: false,
@@ -38,6 +38,10 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING(20),
     allowNull: false,
   },
-});
+},
+  {
+    timestamps: false
+  }
+);
 
 module.exports = User;
