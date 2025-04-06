@@ -7,18 +7,22 @@
 // Thunder Harding 
 // Violet Gonzalez 
 
-// models/index.js
-const sequelize = require('../config/database'); // Import existing instance
-
 // Import your models
 const User = require('./user');
 const Reservation = require('./reservation');
 
-// Define associations if needed
+// Define associations
+User.hasMany(Reservation, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+})
+
+Reservation.belongsTo(User, {
+  foreignKey: 'user_id'
+})
 
 // Export models and sequelize
 module.exports = {
-  sequelize,
   User,
   Reservation
 };
