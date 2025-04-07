@@ -17,11 +17,10 @@ app.use(express.json());
 // server should use the routes we've pulled in
 app.use(routes);
 
-// if a view is not found, return 404
-// not yet implemented
-// app.use((req, res) => {
-//     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-// });
+// if the user tries to hit an endpoint that doesn't exist, send back this error
+app.use((req, res) => {
+    res.status(404).json({ error: 'Route not found. Does your route require an api path variable?' });
+});
 
 // start the server
 app.listen(PORT, () => {
