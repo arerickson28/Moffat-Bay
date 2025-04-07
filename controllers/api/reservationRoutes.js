@@ -4,45 +4,68 @@ const router = require('express').Router();
 //create new reservation
 // will look like http://localhost:3001/api/reservations/newRes
 router.post('/newRes', async (req, res) => {
-    try {
-        const resMessage = {
-            "message": "congrats, you've created a new reservation!"
-          }
-            res.status(200).json(resMessage);
-    }catch (err) {
-        console.log(err);
-        res.status(400).json(err);
-      }
+  try {
+
+    // this bit checks to make sure there is a request body, if not, it gets mad
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res.status(400).json({ error: 'Request body is empty' });
+    }
+
+    // this bit checks to make sure the frontend has sent the data required to create a new reservation
+    const { userId, roomId, guestCount, checkInDate, checkOutDate } = req.body;
+    if (!userId || !roomId || !guestCount || !checkInDate || !checkOutDate) {
+      return res.status(400).json({ error: 'missing required fields. To create a new reservation, please provide the userId, roomId, guestCount, checkInDate, and checkOutDate. The reservation status is not needed as the default status for a new reservation is pending' });
+    }
+
+    // return a stub response so the frontend developers can verify they're successfully passing data to the backend
+    const stubResponse = {
+      message: 'received POST data for newRes endpoint. This endpoint is a stub. It does not yet interact with database.',
+      data: req.body
+    }
+
+    res.status(200).json(stubResponse);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
 });
 
 // get one reservation
 // will look like http://localhost:3001/api/reservations/getOneRes/52
 router.get('/getOneRes/:resId', async (req, res) => {
+
   try {
-      const resMessage = {
-          "message": "congrats, you've retrieved a reservation!",
-          "reservationId": req.params.resId
-        }
-          res.status(200).json(resMessage);
-  }catch (err) {
-      console.log(err);
-      res.status(400).json(err);
+
+    // return a stub response so the frontend developers can verify they're successfully communicating with the backend
+    const stubResponse = {
+      message: 'received GET request for getOneRes endpoint. This endpoint is a stub. It does not yet interact with database.',
+      reservationId: req.params.resId
     }
+
+    res.status(200).json(stubResponse);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
 });
 
 // get all reservations for userId
 // will look like http://localhost:3001/api/reservations/getAllResForUser/75
 router.get('/getAllResForUser/:userId', async (req, res) => {
+  
   try {
-      const resMessage = {
-          "message": "congrats, you've retrieved all reservations!",
-          "userId": req.params.userId
-        }
-          res.status(200).json(resMessage);
-  }catch (err) {
-      console.log(err);
-      res.status(400).json(err);
+
+    // return a stub response so the frontend developers can verify they're successfully communicating with the backend
+    const stubResponse = {
+      message: 'received GET request for getAllResForUser endpoint. This endpoint is a stub. It does not yet interact with database.',
+      userId: req.params.userId
     }
+
+    res.status(200).json(stubResponse);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
 });
 
 module.exports = router;
