@@ -175,6 +175,34 @@ strong {
     opacity: 1; 
 }
 
+.login-container {
+    display: flex;
+    align-items: center; /* vertically center items */
+    justify-content: center; /* optional: center whole block */
+    gap: 20px; /* space between image and form */
+    padding: 40px;
+  }
+  
+  .login-image {
+    width: 600px;
+    height: auto;
+    border-radius: 10px; /* optional for rounded corners */
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  
+  .login-form h2,
+  .login-form p,
+  .login-form input,
+  .login-form button {
+    margin-bottom: 15px;
+  }
+  
+
 @media (max-width: 768px) {
     .content {
         flex-direction: column; 
