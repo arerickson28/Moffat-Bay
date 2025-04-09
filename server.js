@@ -1,3 +1,6 @@
+// pull in environment variables
+require('dotenv').config();
+
 // pull in the express server framework
 const express = require("express");
 
