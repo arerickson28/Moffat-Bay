@@ -1,45 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>Create Your Moffat Bay Lodge Account</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Moffat Bay Lodge</title>
+    <meta name="authors" content="Roald Medendorp" />
+    <meta name="description" content="A cozy bed and breakfast by the sea"/>
+    <meta name="keywords" content="bed and breakfast, cozy, seaside, stay, getaway" />
+    <meta name="robots" content="nofollow" />
+    <link rel="stylesheet" href="../public/style/Style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Navigation Styles */
-        .navbar {
-            background-color: #2a4d69;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-brand {
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            margin-left: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            margin-right: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
 
         /* Registration Page Styles */
         body {
@@ -51,44 +26,102 @@
             align-items: center;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                         url('../public/images/banner-registration.jpg') center/cover;
-            padding-top: 60px; /* Space for fixed navbar */
+        }
+        /* Added styles for centering */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .registration-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 40px; /* Adjust for navbar */
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        /* original form styles */
-        h2 { color: #2a4d69; text-align: center; margin-bottom: 1.5rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2a4d69; }
-        input { width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
-        .input-error { border-color: #e63946; }
-        .error-message { color: #e63946; font-size: 0.875rem; margin-top: 0.25rem; display: none; }
-        #submitButton { width: 100%; padding: 1rem; background-color: #4b86b4; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        #submitButton:hover { background-color: #2a4d69; }
-        .login-link { text-align: center; margin-top: 1rem; }
-        .login-link a { color: #4b86b4; text-decoration: none; font-weight: 600; }
+        #registrationForm {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Improved form styling */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #submitButton {
+            width: 100%;
+            padding: 1rem;
+            background-color: #2a5d84;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+
+        #submitButton:hover {
+            background-color: #1d4563;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .login-link a {
+            color: #2a5d84;
+            text-decoration: none;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
     </style>
 </head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="/" class="nav-brand">Moffat Bay Lodge</a>
-        <div class="nav-links">
-            <a href="rooms.html">Rooms</a>
-            <a href="activities.html">Activities</a>
-            <a href="about.html">About Us</a>
-        </div>
-    </nav>
 
-    <!-- Original Registration Form -->
+<body>
+    <div class="title">
+        <div class="navbar">
+            <a href="../views/index.html">Home</a>
+            <a href="../views/About.html">About Us</a>
+            <a href="../views/rooms.html">Rooms</a>
+        </div>
+    </div> 
+
+    <!-- Centered Registration Form -->
     <div class="registration-container">
         <form id="registrationForm">
             <h2>Create Your Moffat Bay Lodge Account</h2>
@@ -132,15 +165,14 @@
         </form>
     </div>
 
-    <script>
-        // Original JavaScript remains unchanged
-        const API_BASE_URL = 'http://your-backend-domain.com/api';
-        
-        function validateForm() { /* ... */ }
-        function showError(elementId, message) { /* ... */ }
-        async function handleSubmit(event) { /* ... */ }
+<script>
+    const API_BASE_URL = 'http://your-backend-domain.com/api';
+    
+    function validateForm() { /* ... */ }
+    function showError(elementId, message) { /* ... */ }
+    async function handleSubmit(event) { /* ... */ }
 
-        document.getElementById('registrationForm').addEventListener('submit', handleSubmit);
-    </script>
+    document.getElementById('registrationForm').addEventListener('submit', handleSubmit);
+</script>
 </body>
 </html>
