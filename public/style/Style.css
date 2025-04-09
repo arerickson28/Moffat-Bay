@@ -1,5 +1,5 @@
 html {
-    background-color: white;
+    background-color: #F0F0F0;
 }
 
 .bhutuka-expanded-one-regular {
@@ -16,19 +16,25 @@ html {
 
 .title {
     /* changed height to match the mockup and added some opacity to image. */
-    height: 200px;
-    width: 100%; 
+    height: 250px;
+    width: 300%; 
     background-image: url(../images/pastel.PNG);
-    background-size: contain;
+    background-size: 90% 90%;
     background-repeat: no-repeat;
     background-position: center; 
     color: black;
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
     text-align: center;
     opacity: 95%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
 }
+
 
 .navbar {
     top: 0;
@@ -38,7 +44,7 @@ html {
     display: flex;
     justify-content: center;
     background-color: transparent;
-    font-family: "BhuTuka Expanded One", serif;
+    font-family:  "BhuTuka Expanded One", serif;
     font-size: larger;
     font-weight: bold;
     z-index: 10;
@@ -77,9 +83,12 @@ h1 {
 }
 .Home-second {
     display: flex; /* Use flexbox to align items side by side */
-    flex-wrap: wrap; 
-    justify-content: flex;
+    justify-content: space-between;
     margin-bottom: 50px;
+    align-items: flex-start;
+    padding: 0;
+    width: 100%;
+    gap: 30px;
 }
 
 .Home-IMG1 {
@@ -89,16 +98,22 @@ h1 {
     box-sizing: border-box;
 }
 
-.Home-second p {
+.welcome-message p {
     font-family: Helvetica, serif;
     font-size: 1.1em;
     line-height: 1.6em;
-    max-width: 975px;
-    margin-bottom: 20px;
-    text-align: left; 
-    margin-left: 5px; 
-    width: 45%; 
-    font-weight: bold;
+    width: 100%;
+    margin: 0;
+    font-weight: normal;
+
+}
+
+.welcome-message {
+    width: 32%;
+    padding-left: 0;
+    flex-shrink: 0;
+    display: block;
+    text-align: left;
 }
 
 .AboutUs-IMG1, .AboutUs-IMG2 {
@@ -138,8 +153,10 @@ h1 {
 }
 
 .content {
-    padding: 5px;
-    margin: 5px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1400px;
+    width: 95%;
     background-color: #f9f9f9;
     border-radius: 3px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -164,10 +181,10 @@ h1 {
     text-align: center;
     margin: 0 auto;
     width: 100%;
-    font-family: "BhuTuka Expanded One", serif;
+    font-family: Helvetica, serif;
     font-size: 1.1em;
     line-height: 1.6em;
-    font-weight: bold;
+    font-weight: normal;
     margin-top: 5px;
 }
 
@@ -188,7 +205,7 @@ strong {
     opacity: 1; 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .content {
         flex-direction: column; 
         align-items: center;
@@ -208,4 +225,146 @@ strong {
         padding-left: 15px;
         padding-right: 15px;
     }
+
+    .Home-second {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+    }
+
+    .welcome-message {
+        padding-left: 0;
+    }
+
+    .slide-container, .welcome-message {
+        width: 100%;
+    }
+
+    .slide-container {
+        width: 95%;
+        height: 350px;
+        display: block;
+        visibility: visible !important;
+        min-width: unset;
+        margin: 0 auto;
+    }
+
+    .welcome-message {
+        width: 95%;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        height: 180px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .title {
+        background-size: 90% 90%;
+    }
+}
+
+
+.booking-date {
+    display: flex;
+    align-items: center;
+    background: #899289;
+    border-radius: 20px;
+    padding: 15px;
+    max-width: 450px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.date-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-field label {
+    margin-bottom: 5px;
+    font-family: Helvetica, serif;
+}
+
+#dateselect {
+    padding: 10px 15px;
+    border: 1px solid #6a6b65;
+    border-radius: 4px;
+    font-family: Helvetica, serif;
+    cursor: pointer;
+    width: 300px;
+}
+
+.search-button {
+    background-color: #d0c1ac;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: auto;
+    font-family: Helvetica, serif;
+}
+
+.easepick-wrapper {
+    font-family: Helvetica, serif;
+    z-index: 10;
+}
+
+.slide-container {
+    width: 65%;
+    height: 450px;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+    min-width: unset;
+    flex: 1;
+    display: block !important;
+    visibility: visible !important;
+}
+
+.slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slides img {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.slides img.active {
+    display:block !important;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: #d0c1ac;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.next {
+    right:0;
+    border-radius: 3px 0 0 3px;
 }
