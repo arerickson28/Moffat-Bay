@@ -49,8 +49,10 @@ router.post('/loginUser', async (req, res) => {
       return res.status(400).json({ error: 'missing required fields. To attempt to login a user, a username and password are needed' });
     }
 
+    // look in the database for a user with the provided username/email
     const userData = await User.findOne({ where: { email: req.body.username } });
 
+    // if the user record is not found, send back a "not found" message
     if (!userData) {
       res
         .status(400)
@@ -58,6 +60,7 @@ router.post('/loginUser', async (req, res) => {
       return;
     }
 
+    // if the user record is found but the provided password does not match the user record, send back a "not found" message
     if (userData.dataValues.password !== req.body.password) {
       res
         .status(400)
@@ -65,6 +68,7 @@ router.post('/loginUser', async (req, res) => {
       return;
     }
 
+    // when given username and password match a user record, add the user to the session and set the logged_in status to true
     req.session.save(() => {
       req.session.userId = userData.dataValues.id;
       req.session.userName = userData.dataValues.usename;
