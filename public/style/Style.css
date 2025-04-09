@@ -15,16 +15,19 @@ html {
 }
 
 .title {
-    height: 400px;
+    /* changed height to match the mockup and added some opacity to image. */
+    height: 200px;
     width: 100%; 
     background-image: url(../images/pastel.PNG);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center; 
     color: black;
     display: flex;
     justify-content: center;
     align-items: end;
     text-align: center;
+    opacity: 95%;
 }
 
 .navbar {
@@ -59,9 +62,19 @@ h1 {
     text-align: center;
     font-family: "BhuTuka Expanded One", serif;
     font-size: 3em;
+    margin: 0 auto;
+    width: 100%;
 }
 
-
+.Home-first {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
 .Home-second {
     display: flex; /* Use flexbox to align items side by side */
     flex-wrap: wrap; 
@@ -77,7 +90,7 @@ h1 {
 }
 
 .Home-second p {
-    font-family: "BhuTuka Expanded One", serif;
+    font-family: Helvetica, serif;
     font-size: 1.1em;
     line-height: 1.6em;
     max-width: 975px;
@@ -136,7 +149,7 @@ h1 {
 }
 
 .AboutUs-second p, .AboutUs-third p {
-    font-family: "BhuTuka Expanded One", serif;
+    font-family: Helvetica, serif;
     font-size: 1.1em;
     line-height: 1.6em;
     max-width: 975px;
@@ -165,9 +178,9 @@ strong {
 
 .floating-text {
     position: relative;
-    top: -100px;
+    top: 100px;
     opacity: 0; 
-    transition: top 0.1s ease-out, opacity 0.1s ease-out; 
+    transition: top 0.3s ease-out, opacity 0.1s ease-out;
 }
 
 .floating-text.visible {
