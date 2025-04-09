@@ -1,18 +1,17 @@
-// Group 1 Capstone Database
-// Roald Medendorp
-// Austen Erickson 
-// Deena Linehan 
-// Giabella Apo 
-// Kristina Vasquez 
-// Thunder Harding 
-// Violet Gonzalez 
+// pull in environment variables
+require('dotenv').config();
 
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('MoffatBayLodge', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'mysql',
-});
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PW,
+  {
+    host: 'localhost',
+    dialect: 'mysql',
+  }
+);
 
 sequelize.authenticate()
   .then(() => console.log('Database connected.'))
