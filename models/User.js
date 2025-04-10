@@ -8,9 +8,15 @@
 // Violet Gonzalez 
 
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../config/connection');
 
 const User = sequelize.define('User', {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+  },
   first_name: {
     type: DataTypes.STRING(50),
     allowNull: false,
@@ -32,6 +38,10 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING(20),
     allowNull: false,
   },
-});
+},
+  {
+    timestamps: false
+  }
+);
 
 module.exports = User;

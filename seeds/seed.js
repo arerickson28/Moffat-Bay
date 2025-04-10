@@ -7,7 +7,8 @@
 // Thunder Harding 
 // Violet Gonzalez 
 
-const { sequelize, User, Reservation } = require('./models');
+const { User, Reservation, Room } = require('../models');
+const sequelize = require('../config/connection')
 
 async function seedDatabase() {
   try {
@@ -38,24 +39,47 @@ async function seedDatabase() {
       },
     ]);
 
+    const rooms = await Room.bulkCreate([
+      {
+        type: 'double, full beds',
+        price_per_night: 120
+      },
+      {
+        type: 'single, queen bed',
+        price_per_night: 135
+      },
+      {
+        type: 'double, queen beds',
+        price_per_night: 150
+      },
+      {
+        type: 'single, king bed',
+        price_per_night: 160
+      },
+
+    ]);
+
     // Create reservations
     await Reservation.bulkCreate([
       {
-        user_id: 1,
+        user_id: users[0].id,
+        room_id: rooms[0].id,
         check_in_date: '2025-10-15',
         check_out_date: '2025-10-20',
         room_type: 'Ocean View',
         guest_count: 2,
       },
       {
-        user_id: 2,
+        user_id: users[1].id,
+        room_id: rooms[1].id,
         check_in_date: '2025-11-01',
         check_out_date: '2025-11-05',
         room_type: 'Mountain View',
         guest_count: 4,
       },
       {
-        user_id: 3,
+        user_id: users[2].id,
+        room_id: rooms[2].id,
         check_in_date: '2025-12-10',
         check_out_date: '2025-12-15',
         room_type: 'Suite',
@@ -68,7 +92,7 @@ async function seedDatabase() {
   } catch (error) {
     console.error('Seeding failed:', error);
   } finally {
-    await sequelize.close();
+    process.exit(0)
   }
 }
 
