@@ -10,25 +10,38 @@ router.post('/createUser', async (req, res) => {
 
     // this bit checks to make sure there is a request body, if not, it gets mad
     if (!req.body || Object.keys(req.body).length === 0) {
-      return res.status(400).json({ error: 'Request body is empty' });
+      return res.status(400).json({ error: 'request body is empty' });
     }
 
     // this bit checks to make sure the frontend has sent the data required to create a new user
-    const { firstName, lastName, email, password, phoneNumber } = req.body;
-    if (!firstName || !lastName || !email || !password || !phoneNumber) {
+    const { firstName, lastName, username, password, phoneNumber } = req.body;
+    if (!firstName || !lastName || !username || !password || !phoneNumber) {
       return res.status(400).json({ error: 'missing required fields. To create a new user, a firstName, lastName, email, password, and phoneNumber are needed' });
     }
 
-    // return a stub response so the frontend developers can verify they're successfully passing data to the backend
-    const stubResponse = {
-      message: 'received POST data for createUser endpoint. This endpoint is a stub. It does not yet interact with database.',
-      data: req.body
+    // check if user exists
+    const existing = await User.findOne({ where: { email: req.body.username } });
+    if (existing) {
+      return res.status(409).json({ error: 'username already exists' });
     }
 
-    res.status(200).json(stubResponse);
+    // create new user
+    const newUser = await User.create(
+      {
+        first_name: firstName,
+        last_name: lastName,
+        email: username,
+        password: password,
+        phone_number: phoneNumber
+      }
+    );
+
+    // send back okay message
+    res.status(201).json({ message: 'user registered. You may now log in', user: { username: newUser.dataValues.email } });
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    // if the database interaction fails, send back an error
+    res.status(500).json({ error: 'server error.' });
   }
 });
 
@@ -56,7 +69,7 @@ router.post('/loginUser', async (req, res) => {
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: 'incorrect username or password, please try again' });
       return;
     }
 
@@ -64,7 +77,7 @@ router.post('/loginUser', async (req, res) => {
     if (userData.dataValues.password !== req.body.password) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: 'incorrect username or password, please try again' });
       return;
     }
 
@@ -74,11 +87,11 @@ router.post('/loginUser', async (req, res) => {
       req.session.userName = userData.dataValues.usename;
       req.session.logged_in = true;
 
-      res.status(200).json({ user: userData, message: 'You are now logged in!' });
+      res.status(200).json({ user: userData, message: 'you are now logged in!' });
     });
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    res.status(500).json({ error: 'server error.' });
   }
 });
 

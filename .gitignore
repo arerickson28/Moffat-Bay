@@ -1,7 +1,4 @@
-# Environment variables
-.env
-
-# Random annying thing Mac computers sometimes create
+# Random annoying thing Mac computers sometimes create
 .DS_Store
 
 # Logs
