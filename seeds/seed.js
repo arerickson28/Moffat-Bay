@@ -37,7 +37,11 @@ async function seedDatabase() {
         password: 'hashed_789',
         phone_number: '+1-555-222-3333',
       },
-    ]);
+    ], {
+      // add this to apply the password hashing hook
+      individualHooks: true,
+      returning: true,
+    });
 
     const rooms = await Room.bulkCreate([
       {
