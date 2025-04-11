@@ -13,15 +13,15 @@ router.post('/createUser', async (req, res) => {
     }
 
     // this bit checks to make sure the frontend has sent the data required to create a new user
-    const { firstName, lastName, username, password, phoneNumber } = req.body;
-    if (!firstName || !lastName || !username || !password || !phoneNumber) {
+    const { firstName, lastName, email, password, phoneNumber } = req.body;
+    if (!firstName || !lastName || !email || !password || !phoneNumber) {
       return res.status(400).json({ error: 'missing required fields. To create a new user, a firstName, lastName, email, password, and phoneNumber are needed' });
     }
 
     // check if user exists
-    const existing = await User.findOne({ where: { email: req.body.username } });
+    const existing = await User.findOne({ where: { email: req.body.email } });
     if (existing) {
-      return res.status(409).json({ error: 'username already exists' });
+      return res.status(409).json({ error: 'email already exists' });
     }
 
     // create new user
@@ -29,14 +29,14 @@ router.post('/createUser', async (req, res) => {
       {
         first_name: firstName,
         last_name: lastName,
-        email: username,
+        email: email,
         password: password,
         phone_number: phoneNumber
       }
     );
 
     // send back okay message
-    res.status(201).json({ message: 'user registered. You may now log in', user: { username: newUser.dataValues.email } });
+    res.status(201).json({ message: 'user registered. You may now log in', user: { email: newUser.dataValues.email } });
   } catch (err) {
     console.log(err);
     // if the database interaction fails, send back an error
@@ -56,19 +56,19 @@ router.post('/loginUser', async (req, res) => {
     }
 
     // this bit checks to make sure the frontend has sent the data required to attempt a user login
-    const { username, password } = req.body;
-    if (!username || !password) {
-      return res.status(400).json({ error: 'missing required fields. To attempt to login a user, a username and password are needed' });
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ error: 'missing required fields. To attempt to login a user, a email and password are needed' });
     }
 
     // look in the database for a user with the provided username/email
-    const userData = await User.findOne({ where: { email: req.body.username } });
+    const userData = await User.findOne({ where: { email: req.body.email } });
 
     // if the user record is not found, send back a "not found" message
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'incorrect username or password, please try again' });
+        .json({ message: 'incorrect email or password, please try again' });
       return;
     }
 
@@ -79,11 +79,11 @@ router.post('/loginUser', async (req, res) => {
     if (!passwordMatches) {
       res
         .status(400)
-        .json({ message: 'incorrect username or password, please try again' });
+        .json({ message: 'incorrect email or password, please try again' });
       return;
     }
 
-    // when given username and password match a user record, add the user to the session and set the logged_in status to true
+    // when given email and password match a user record, add the user to the session and set the logged_in status to true
     req.session.save(() => {
       req.session.userId = userData.dataValues.id;
       req.session.userName = userData.dataValues.usename;
