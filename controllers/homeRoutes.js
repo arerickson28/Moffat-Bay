@@ -1,6 +1,5 @@
 // the home routes serve the webpages to the broswer
 
-
 const router = require("express").Router();
 const path = require('path');
 
@@ -30,15 +29,15 @@ router.get('/about', (req, res) => {
 
 // // Registration Page
 // will look like http://localhost:3001/registration
-// router.get('/registration, (req, res) => {
-//     res.sendFile(path.join(__dirname, '../views/registration.html'));
-// });
+router.get('/registration', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/registration.html'));
+});
 
 // // Login Page
 // will look like http://localhost:3001/login
-// router.get('/login', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../views/login.html'));
-// });
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/login.html'));
+});
 
 // // Reservation Page
 // will look like http://localhost:3001/reservation

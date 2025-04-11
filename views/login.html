@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="authors" content="Bella Apo" />
@@ -7,39 +8,43 @@
   <meta name="keywords" content="CSS, HTML, Group 1, Capstone" />
 
   <title>Login Page</title>
-  <link rel="stylesheet" href="./../public/style/Style.css">
-  <link href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style/Style.css">
+  <link href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang&display=swap"
+    rel="stylesheet">
 
 </head>
+
 <body>
 
   <div class="title">
     <div class="navbar">
-        <a href="../views/index.html">Home</a>
-        <a href="../views/About.html">About Us</a>
-        <a href="../registration.html">Register</a>
-        <!-- <a href="contact-us.html">Contact Us</a> -->
+      <a href="/">Home</a>
+      <a href="/about">About Us</a>
+      <a href="/registration">Register</a>
+      <a href="/login">Log In</a>
+      <!-- <a href="contact-us.html">Contact Us</a> -->
     </div>
-</div>
+  </div>
 
   <div class="login-container">
-    <img src="./../public/images/logincabin.jpg" alt="Login Illustration" class ="login-image">
-   
+    <img src="/images/logincabin.jpg" alt="Login Illustration" class="login-image">
+
     <div class="login-form">
-        <h2>Welcome Back!</h2>
-        <p>Your Cozy Cavern escape is just a click away.</p>
-        <form action="login.js" method="post">
-          <input type="text" name="username" placeholder="Username" required>
-          <input type="password" name="password" placeholder="Password" required>
-         
-          <button type="submit">Login</button>
-        
-          <h3>New here?</h3>
-          <p>Don't have an account yet? Join us at the Cozy Cavern and discover your perfect getaway!</p>
-          <a href="registration.html" class="create-account-btn">Create Account</a>        
-        </form>
-      </div>
+      <h2>Welcome Back!</h2>
+      <p>Your Cozy Cavern escape is just a click away.</p>
+      <form action="login.js" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit">Login</button>
+
+        <h3>New here?</h3>
+        <p>Don't have an account yet? Join us at the Cozy Cavern and discover your perfect getaway!</p>
+        <a href="/registration" class="create-account-btn">Create Account</a>
+      </form>
+    </div>
 
 
 </body>
+
 </html>
