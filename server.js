@@ -1,3 +1,5 @@
+const path = require('path');
+
 // pull in environment variables
 require('dotenv').config();
 
@@ -50,6 +52,12 @@ app.use(express.json());
 
 // server should use the routes we've pulled in
 app.use(routes);
+
+// this line adds middleware to your Express app that parses incoming URL-encoded data — the kind you usually get from HTML form submissions.
+app.use(express.urlencoded({ extended: true }));
+
+// this line enables express to serve static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // if the user tries to hit an endpoint that doesn't exist, send back this error
 app.use((req, res) => {

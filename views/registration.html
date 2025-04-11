@@ -5,17 +5,18 @@
     <title>Create Your Moffat Bay Lodge Account</title>
     <meta charset="UTF-8">
     <meta name="authors" content="Roald Medendorp" />
-    <meta name="description" content="A cozy bed and breakfast by the sea"/>
+    <meta name="description" content="A cozy bed and breakfast by the sea" />
     <meta name="keywords" content="bed and breakfast, cozy, seaside, stay, getaway" />
     <meta name="robots" content="nofollow" />
-    <link rel="stylesheet" href="../public/style/Style.css">
+    <link rel="stylesheet" href="/style/Style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <style>
-
         /* Registration Page Styles */
         body {
             margin: 0;
@@ -24,9 +25,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('../public/images/banner-registration.jpg') center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('/images/banner-registration.jpg') center/cover;
         }
+
         /* Added styles for centering */
         body {
             margin: 0;
@@ -115,11 +117,12 @@
 <body>
     <div class="title">
         <div class="navbar">
-            <a href="../views/index.html">Home</a>
-            <a href="../views/About.html">About Us</a>
-            <a href="../views/rooms.html">Rooms</a>
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/registration">Register</a>
+            <a href="/login">Log In</a>
         </div>
-    </div> 
+    </div>
 
     <!-- Centered Registration Form -->
     <div class="registration-container">
@@ -165,14 +168,15 @@
         </form>
     </div>
 
-<script>
-    const API_BASE_URL = 'http://your-backend-domain.com/api';
-    
-    function validateForm() { /* ... */ }
-    function showError(elementId, message) { /* ... */ }
-    async function handleSubmit(event) { /* ... */ }
+    <script>
+        const API_BASE_URL = 'http://your-backend-domain.com/api';
 
-    document.getElementById('registrationForm').addEventListener('submit', handleSubmit);
-</script>
+        function validateForm() { /* ... */ }
+        function showError(elementId, message) { /* ... */ }
+        async function handleSubmit(event) { /* ... */ }
+
+        document.getElementById('registrationForm').addEventListener('submit', handleSubmit);
+    </script>
 </body>
+
 </html>
