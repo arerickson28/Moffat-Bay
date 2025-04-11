@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-
 //create user
 // will look like will look like http://localhost:3001/api/users/create
 router.post('/createUser', async (req, res) => {
@@ -73,8 +72,11 @@ router.post('/loginUser', async (req, res) => {
       return;
     }
 
+    // use the User model checkPassword method to compare the provided password from the login attempt with the un-hashed version of the password saved in the database for that user
+    const passwordMatches = await userData.checkPassword(req.body.password);
+
     // if the user record is found but the provided password does not match the user record, send back a "not found" message
-    if (userData.dataValues.password !== req.body.password) {
+    if (!passwordMatches) {
       res
         .status(400)
         .json({ message: 'incorrect username or password, please try again' });
