@@ -9,19 +9,19 @@ router.post('/createUser', async (req, res) => {
 
     // this bit checks to make sure there is a request body, if not, it gets mad
     if (!req.body || Object.keys(req.body).length === 0) {
-      return res.status(400).json({ error: 'request body is empty' });
+      return res.status(400).json({ message: 'request body is empty' });
     }
 
     // this bit checks to make sure the frontend has sent the data required to create a new user
     const { firstName, lastName, email, password, phoneNumber } = req.body;
     if (!firstName || !lastName || !email || !password || !phoneNumber) {
-      return res.status(400).json({ error: 'missing required fields. To create a new user, a firstName, lastName, email, password, and phoneNumber are needed' });
+      return res.status(400).json({ message: 'missing required fields. To create a new user, a firstName, lastName, email, password, and phoneNumber are needed' });
     }
 
     // check if user exists
     const existing = await User.findOne({ where: { email: req.body.email } });
     if (existing) {
-      return res.status(409).json({ error: 'email already exists' });
+      return res.status(409).json({ message: 'email already exists' });
     }
 
     // create new user
@@ -40,7 +40,7 @@ router.post('/createUser', async (req, res) => {
   } catch (err) {
     console.log(err);
     // if the database interaction fails, send back an error
-    res.status(500).json({ error: 'server error.' });
+    res.status(500).json({ message: 'server error.' });
   }
 });
 
@@ -52,13 +52,13 @@ router.post('/loginUser', async (req, res) => {
 
     // this bit checks to make sure there is a request body, if not, it gets mad
     if (!req.body || Object.keys(req.body).length === 0) {
-      return res.status(400).json({ error: 'Request body is empty' });
+      return res.status(400).json({ message: 'Request body is empty' });
     }
 
     // this bit checks to make sure the frontend has sent the data required to attempt a user login
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(400).json({ error: 'missing required fields. To attempt to login a user, a email and password are needed' });
+      return res.status(400).json({ message: 'missing required fields. To attempt to login a user, a email and password are needed' });
     }
 
     // look in the database for a user with the provided username/email
@@ -93,7 +93,7 @@ router.post('/loginUser', async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: 'server error.' });
+    res.status(500).json({ message: 'server error.' });
   }
 });
 
