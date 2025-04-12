@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 //create user
-// will look like will look like http://localhost:3001/api/users/create
+// will look like will look like http://localhost:3001/api/users/createUser
 router.post('/createUser', async (req, res) => {
 
   try {
@@ -52,23 +52,23 @@ router.post('/loginUser', async (req, res) => {
 
     // this bit checks to make sure there is a request body, if not, it gets mad
     if (!req.body || Object.keys(req.body).length === 0) {
-      return res.status(400).json({ error: 'Request body is empty' });
+      return res.status(400).json({ error: 'request body is empty' });
     }
 
     // this bit checks to make sure the frontend has sent the data required to attempt a user login
-    const { username, password } = req.body;
-    if (!username || !password) {
-      return res.status(400).json({ error: 'missing required fields. To attempt to login a user, a username and password are needed' });
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ error: 'missing required fields. To attempt to login a user, a email and password are needed' });
     }
 
     // look in the database for a user with the provided username/email
-    const userData = await User.findOne({ where: { email: req.body.username } });
+    const userData = await User.findOne({ where: { email: req.body.email } });
 
     // if the user record is not found, send back a "not found" message
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'incorrect username or password, please try again' });
+        .json({ message: 'incorrect email or password, please try again' });
       return;
     }
 
@@ -79,7 +79,7 @@ router.post('/loginUser', async (req, res) => {
     if (!passwordMatches) {
       res
         .status(400)
-        .json({ message: 'incorrect username or password, please try again' });
+        .json({ message: 'incorrect email or password, please try again' });
       return;
     }
 
