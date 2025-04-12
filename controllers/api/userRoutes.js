@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 //create user
-// will look like will look like http://localhost:3001/api/users/create
+// will look like will look like http://localhost:3001/api/users/createUser
 router.post('/createUser', async (req, res) => {
 
   try {
@@ -52,7 +52,7 @@ router.post('/loginUser', async (req, res) => {
 
     // this bit checks to make sure there is a request body, if not, it gets mad
     if (!req.body || Object.keys(req.body).length === 0) {
-      return res.status(400).json({ message: 'Request body is empty' });
+      return res.status(400).json({ error: 'request body is empty' });
     }
 
     // this bit checks to make sure the frontend has sent the data required to attempt a user login
