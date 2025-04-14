@@ -47,8 +47,8 @@ router.get('/reservation', (req, res) => {
 
 // // Reservation Lookup Page
 // will look like http://localhost:3001/reservationlookup
-// router.get('/reservationlookup', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../views/reservationlookup.html'));
-// });
+router.get('/reservationlookup', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/reservationlookup.html'));
+});
 
 module.exports = router;
