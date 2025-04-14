@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Reservations - Cozy Cavern Bed & Breakfast</title>
+    <meta charset="UTF-8">
+    <meta name="authors" content="Roald Medendorp" />
+    <meta name="description" content="Reserve your stay at our seaside B&B" />
+    <meta name="keywords" content="reservations, booking, bed and breakfast, seaside" />
+    <meta name="robots" content="nofollow" />
+    <link rel="stylesheet" href="/style/Style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
+    <style>
+        .booking-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .room-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .room-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .room-details {
+            padding: 1.5rem;
+        }
+
+        .room-title {
+            font-family: 'BhuTuka Expanded One', cursive;
+            color: #2c3e50;
+            margin: 0 0 1rem 0;
+        }
+
+        .room-price {
+            font-size: 1.5rem;
+            color: #27ae60;
+            margin: 1rem 0;
+        }
+
+        .book-btn {
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .book-btn:hover {
+            background: #2980b9;
+        }
+
+        .availability-message {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .loading-spinner {
+            display: none;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/reservation">Reservations</a>
+        <a href="/registration">Register</a>
+        <a href="/login">Log In</a>
+    </div>
+
+    <div class="booking-container">
+        <h1 style="text-align: center; margin-top: 2rem;">Book Your Stay</h1>
+        
+        <div class="date-selection" style="margin: 2rem auto; text-align: center;">
+            <div style="max-width: 500px; margin: 0 auto;">
+                <label for="dateselect" style="display: block; margin-bottom: 0.5rem;">
+                    Select Check-in and Check-out Dates
+                </label>
+                <input id="dateselect" type="text" 
+                       style="width: 100%; padding: 0.8rem; margin-bottom: 1rem;"
+                       placeholder="Select your dates">
+                <button onclick="checkAvailability()" 
+                        style="padding: 0.8rem 2rem; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Check Availability
+                </button>
+            </div>
+        </div>
+
+        <div class="loading-spinner" id="loadingSpinner"></div>
+        <div id="roomsContainer"></div>
+    </div>
+
+    <script>
+        // Mock database of rooms
+        const rooms = [
+            {
+                id: 1,
+                name: "Ocean View Suite",
+                price: 249,
+                image: "/images/sea-bedroom.jpg",
+                description: "Spacious suite with panoramic ocean views and private balcony",
+                capacity: 2,
+                amenities: ["King bed", "Ocean view", "Private bathroom", "Breakfast included"]
+            },
+            {
+                id: 2,
+                name: "Garden Retreat",
+                price: 189,
+                image: "/images/garden-room.jpg",
+                description: "Cozy room overlooking our private flower garden",
+                capacity: 2,
+                amenities: ["Queen bed", "Garden view", "Private bathroom", "Breakfast included"]
+            },
+            {
+                id: 3,
+                name: "Lighthouse Suite",
+                price: 349,
+                image: "/images/lighthouse-suite.jpg",
+                description: "Unique suite in historic lighthouse with 360° views",
+                capacity: 4,
+                amenities: ["Two queen beds", "Private terrace", "Jacuzzi", "Champagne welcome"]
+            }
+        ];
+
+        // Initialize date picker
+        let picker;
+        document.addEventListener("DOMContentLoaded", () => {
+            picker = new easepick.create({
+                element: document.getElementById('dateselect'),
+                css: ['https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css'],
+                plugins: ['RangePlugin', 'LockPlugin'],
+                RangePlugin: {
+                    tooltip: true,
+                },
+                LockPlugin: {
+                    minDate: new Date(),
+                }
+            });
+        });
+
+        async function checkAvailability() {
+            const dates = picker.getDatePicker();
+            if (!dates || dates.length < 2) {
+                alert("Please select both check-in and check-out dates");
+                return;
+            }
+
+            showLoading(true);
+            
+            // Simulate API call
+            setTimeout(() => {
+                showLoading(false);
+                displayRooms(rooms);
+            }, 1000);
+        }
+
+        function displayRooms(availableRooms) {
+            const container = document.getElementById('roomsContainer');
+            
+            if (availableRooms.length === 0) {
+                container.innerHTML = `
+                    <div class="availability-message">
+                        No rooms available for selected dates. Please try different dates.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="room-grid">
+                    ${availableRooms.map(room => `
+                        <div class="room-card">
+                            <img src="${room.image}" alt="${room.name}" class="room-image">
+                            <div class="room-details">
+                                <h3 class="room-title">${room.name}</h3>
+                                <p>${room.description}</p>
+                                <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                                    ${room.amenities.map(a => `<li>✔️ ${a}</li>`).join('')}
+                                </ul>
+                                <p class="room-price">$${room.price}/night</p>
+                                <button class="book-btn" onclick="startBooking(${room.id})">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function showLoading(show) {
+            document.getElementById('loadingSpinner').style.display = show ? 'block' : 'none';
+        }
+
+        function startBooking(roomId) {
+            const selectedRoom = rooms.find(r => r.id === roomId);
+            const dates = picker.getDatePicker();
+            
+            if (!dates || dates.length < 2) {
+                alert("Please select dates first");
+                return;
+            }
+
+            const checkIn = dates[0].toLocaleDateString();
+            const checkOut = dates[1].toLocaleDateString();
+            
+            const confirmation = confirm(
+                `Confirm booking:\n
+                Room: ${selectedRoom.name}\n
+                Check-in: ${checkIn}\n
+                Check-out: ${checkOut}\n
+                Total: $${calculateTotal(selectedRoom.price, dates)}`
+            );
+
+            if (confirmation) {
+                // Here you would typically redirect to a payment page
+                alert("Booking confirmed! Redirecting to payment...");
+            }
+        }
+
+        function calculateTotal(pricePerNight, dates) {
+            const nights = Math.ceil((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
+            return pricePerNight * nights;
+        }
+    </script>
+</body>
+</html>
