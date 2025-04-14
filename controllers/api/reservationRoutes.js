@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { User, Reservation } = require('../../models');
+const { User, Reservation, Room } = require('../../models');
 
 //create new reservation
 // will look like http://localhost:3001/api/reservations/newRes
@@ -17,16 +17,40 @@ router.post('/newRes', async (req, res) => {
       return res.status(400).json({ error: 'missing required fields. To create a new reservation, please provide the userId, roomId, guestCount, checkInDate, and checkOutDate. The reservation status is not needed as the default status for a new reservation is pending' });
     }
 
-    // return a stub response so the frontend developers can verify they're successfully passing data to the backend
-    const stubResponse = {
-      message: 'received POST data for newRes endpoint. This endpoint is a stub. It does not yet interact with database.',
-      data: req.body
+    // function to validate date format using a regex or Date constructor
+    const isValidDate = (dateStr) => {
+      const date = new Date(dateStr);
+      return !isNaN(date) && /^\d{4}-\d{2}-\d{2}$/.test(dateStr);
+    };
+
+    // check if dates provided are valid
+    if (!isValidDate(checkInDate) || !isValidDate(checkOutDate)) {
+      return res.status(400).json({ error: 'checkInDate and checkOutDate must be valid dates in YYYY-MM-DD format' });
     }
 
-    res.status(200).json(stubResponse);
+    // ensure check-out is after check-in
+    if (new Date(checkOutDate) <= new Date(checkInDate)) {
+      return res.status(400).json({ error: 'checkOutDate must be after checkInDate' });
+    }
+
+    // create new reservation
+    const newRes = await Reservation.create(
+      {
+        user_id: userId,
+        room_id: roomId,
+        guest_count: guestCount,
+        check_in_date: checkInDate,
+        check_out_date: checkOutDate
+      }
+    );
+
+    // send back okay message
+    res.status(201).json({ message: 'reservation created!', reservation: newRes });
+
+
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    res.status(500).json({ error: 'Something went wrong', details: err.message });
   }
 });
 
@@ -36,35 +60,59 @@ router.get('/getOneRes/:resId', async (req, res) => {
 
   try {
 
-    // return a stub response so the frontend developers can verify they're successfully communicating with the backend
-    const stubResponse = {
-      message: 'received GET request for getOneRes endpoint. This endpoint is a stub. It does not yet interact with database.',
-      reservationId: req.params.resId
+    const resData = await Reservation.findOne({
+      where: { id: req.params.resId },
+      include: [
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: Room,
+          attributes: ['type', 'price_per_night']
+        }
+      ]
+    });
+
+    // if the reservation record is not found, send back a "not found" message
+    if (!resData) {
+      res
+        .status(400)
+        .json({ message: `reservation with id: ${req.params.resId} is not found` });
+      return;
     }
 
-    res.status(200).json(stubResponse);
+    res.status(200).json({ reservation: resData });
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
 // get all reservations for userId
 // will look like http://localhost:3001/api/reservations/getAllResForUser/75
 router.get('/getAllResForUser/:userId', async (req, res) => {
-  
+
   try {
 
-    // return a stub response so the frontend developers can verify they're successfully communicating with the backend
-    const stubResponse = {
-      message: 'received GET request for getAllResForUser endpoint. This endpoint is a stub. It does not yet interact with database.',
-      userId: req.params.userId
-    }
+    const userResData = await Reservation.findAll({
+      where: { user_id: req.params.userId },
+      include: [
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: Room,
+          attributes: ['type', 'price_per_night']
+        }
+      ]
+    });
 
-    res.status(200).json(stubResponse);
+    res.status(200).json({ user_reservation_data: userResData });
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
