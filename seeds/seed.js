@@ -74,6 +74,14 @@ async function seedDatabase() {
         guest_count: 2,
       },
       {
+        user_id: users[0].id,
+        room_id: rooms[1].id,
+        check_in_date: '2025-10-15',
+        check_out_date: '2025-10-20',
+        room_type: 'Ocean View',
+        guest_count: 2,
+      },
+      {
         user_id: users[1].id,
         room_id: rooms[1].id,
         check_in_date: '2025-11-01',

@@ -31,7 +31,7 @@ const Reservation = sequelize.define('Reservation', {
   },
   status: {
     type: DataTypes.ENUM('Confirmed', 'Pending'),
-    defaultValue: 'Confirmed',
+    defaultValue: 'Pending',
   },
   room_id: {
     type: DataTypes.INTEGER,
