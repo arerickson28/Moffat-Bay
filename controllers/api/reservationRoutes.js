@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { User, Reservation } = require('../../models');
+const { User, Reservation, Room } = require('../../models');
 
 //create new reservation
 // will look like http://localhost:3001/api/reservations/newRes
@@ -36,13 +36,20 @@ router.get('/getOneRes/:resId', async (req, res) => {
 
   try {
 
-    // return a stub response so the frontend developers can verify they're successfully communicating with the backend
-    const stubResponse = {
-      message: 'received GET request for getOneRes endpoint. This endpoint is a stub. It does not yet interact with database.',
-      reservationId: req.params.resId
-    }
+    const resData = await Reservation.findOne({
+      where: { id: req.params.resId },
+      include: [
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: Room,
+          attributes: ['type', 'price_per_night']
+        }
+      ] });
 
-    res.status(200).json(stubResponse);
+    res.status(200).json({reservation: resData});
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -55,13 +62,20 @@ router.get('/getAllResForUser/:userId', async (req, res) => {
   
   try {
 
-    // return a stub response so the frontend developers can verify they're successfully communicating with the backend
-    const stubResponse = {
-      message: 'received GET request for getAllResForUser endpoint. This endpoint is a stub. It does not yet interact with database.',
-      userId: req.params.userId
-    }
+    const userResData = await Reservation.findAll({
+      where: { user_id: req.params.userId },
+      include: [
+        {
+          model: User,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: Room,
+          attributes: ['type', 'price_per_night']
+        }
+      ] });
 
-    res.status(200).json(stubResponse);
+    res.status(200).json({user_reservation_data: userResData});
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
