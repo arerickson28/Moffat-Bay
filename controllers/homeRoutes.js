@@ -41,9 +41,9 @@ router.get('/login', (req, res) => {
 
 // // Reservation Page
 // will look like http://localhost:3001/reservation
-// router.get('/reservation', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../views/reservation.html'));
-// });
+router.get('/reservation', (req, res) => {
+     res.sendFile(path.join(__dirname, '../views/reservation.html'));
+});
 
 // // Reservation Lookup Page
 // will look like http://localhost:3001/reservationlookup
