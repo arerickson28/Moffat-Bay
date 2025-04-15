@@ -1,12 +1,3 @@
-// Group 1 Capstone Database
-// Roald Medendorp
-// Austen Erickson 
-// Deena Linehan 
-// Giabella Apo 
-// Kristina Vasquez 
-// Thunder Harding 
-// Violet Gonzalez 
-
 const { User, Reservation, Room } = require('../models');
 const sequelize = require('../config/connection')
 

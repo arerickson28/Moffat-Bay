@@ -12,20 +12,14 @@ router.get('/', (req, res) => {
 // About Page
 // will look like http://localhost:3001/about
 router.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/About.html'));
+    res.sendFile(path.join(__dirname, '../views/about.html'));
 });
 
-// // Contact Page
-// will look like http://localhost:3001/contact
-// router.get('/contact', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../views/contact.html'));
-// });
-
-// // Attractions Page
-// will look like http://localhost:3001/attractions
-// router.get('/attractions', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../views/attractions.html'));
-// });
+// // Amenities Page
+// will look like http://localhost:3001/amenities
+router.get('/amenities', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/amenities.html'));
+});
 
 // // Registration Page
 // will look like http://localhost:3001/registration
@@ -50,5 +44,19 @@ router.get('/reservation', (req, res) => {
 router.get('/reservationlookup', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/reservationlookup.html'));
 });
+
+
+// // Contact Page
+// will look like http://localhost:3001/contact
+// router.get('/contact', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../views/contact.html'));
+// });
+
+// // Attractions Page
+// will look like http://localhost:3001/attractions
+// router.get('/attractions', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../views/attractions.html'));
+// });
+
 
 module.exports = router;
