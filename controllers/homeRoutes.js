@@ -2,6 +2,8 @@
 
 const router = require("express").Router();
 const path = require('path');
+const withAuth = require('../utils/auth');
+
 
 // Home Page (dashboard)
 // will look like http://localhost:3001/
@@ -41,13 +43,13 @@ router.get('/login', (req, res) => {
 
 // // Reservation Page
 // will look like http://localhost:3001/reservation
-router.get('/reservation', (req, res) => {
+router.get('/reservation', withAuth, (req, res) => {
      res.sendFile(path.join(__dirname, '../views/reservation.html'));
 });
 
 // // Reservation Lookup Page
 // will look like http://localhost:3001/reservationlookup
-// router.get('/reservationlookup', (req, res) => {
+// router.get('/reservationlookup', withAuth, (req, res) => {
 //     res.sendFile(path.join(__dirname, '../views/reservationlookup.html'));
 // });
 

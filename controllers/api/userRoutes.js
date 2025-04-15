@@ -97,4 +97,18 @@ router.post('/loginUser', async (req, res) => {
   }
 });
 
+router.post('/logoutUser', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(err => {
+      if (err) {
+        return res.status(500).json({ message: 'Logout failed', error: err });
+      }
+      res.clearCookie('connect.sid'); // Important: clears session cookie from browser
+      res.status(204).end(); // No content, logout successful
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
 module.exports = router;
