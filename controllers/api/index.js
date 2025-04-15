@@ -17,6 +17,7 @@ router.use('/reservations', reservationRoutes);
 // will look like http://localhost:3001/api/rooms
 router.use('/rooms', roomRoutes);
 
+// will look like http://localhost:3001/api/session
 router.use('/session', sessionRoutes);
 
 module.exports = router;

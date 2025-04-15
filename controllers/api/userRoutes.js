@@ -97,6 +97,9 @@ router.post('/loginUser', async (req, res) => {
   }
 });
 
+// log out user
+// will look like http://localhost:3001/api/users/logoutUser
+// this route ends the session
 router.post('/logoutUser', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(err => {
