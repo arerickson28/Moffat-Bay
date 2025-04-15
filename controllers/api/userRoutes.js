@@ -97,4 +97,21 @@ router.post('/loginUser', async (req, res) => {
   }
 });
 
+// log out user
+// will look like http://localhost:3001/api/users/logoutUser
+// this route ends the session
+router.post('/logoutUser', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(err => {
+      if (err) {
+        return res.status(500).json({ message: 'Logout failed', error: err });
+      }
+      res.clearCookie('connect.sid'); // Important: clears session cookie from browser
+      res.status(204).end(); // No content, logout successful
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
 module.exports = router;

@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const { User, Reservation, Room } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 //create new reservation
 // will look like http://localhost:3001/api/reservations/newRes
-router.post('/newRes', async (req, res) => {
+router.post('/newRes', withAuth, async (req, res) => {
   try {
 
     // this bit checks to make sure there is a request body, if not, it gets mad
@@ -56,7 +57,7 @@ router.post('/newRes', async (req, res) => {
 
 // get one reservation
 // will look like http://localhost:3001/api/reservations/getOneRes/52
-router.get('/getOneRes/:resId', async (req, res) => {
+router.get('/getOneRes/:resId', withAuth, async (req, res) => {
 
   try {
 
@@ -91,7 +92,7 @@ router.get('/getOneRes/:resId', async (req, res) => {
 
 // get all reservations for userId
 // will look like http://localhost:3001/api/reservations/getAllResForUser/75
-router.get('/getAllResForUser/:userId', async (req, res) => {
+router.get('/getAllResForUser/:userId', withAuth, async (req, res) => {
 
   try {
 

@@ -6,6 +6,7 @@ const router = require("express").Router();
 const userRoutes = require('./userRoutes');
 const reservationRoutes = require('./reservationRoutes');
 const roomRoutes = require('./roomRoutes');
+const sessionRoutes = require('./sessionRoutes');
 
 // will look like http://localhost:3001/api/users
 router.use('/users', userRoutes);
@@ -15,5 +16,8 @@ router.use('/reservations', reservationRoutes);
 
 // will look like http://localhost:3001/api/rooms
 router.use('/rooms', roomRoutes);
+
+// will look like http://localhost:3001/api/session
+router.use('/session', sessionRoutes);
 
 module.exports = router;

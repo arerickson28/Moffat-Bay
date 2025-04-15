@@ -103,6 +103,14 @@
             100% {
                 transform: rotate(360deg);
             }
+
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -113,12 +121,15 @@
         <a href="/about">About Us</a>
         <a href="/reservation">Reservations</a>
         <a href="/registration">Register</a>
-        <a href="/login">Log In</a>
+        <a href="/login" id="login-link">Log In</a>
+        <a href="/logout" id="logout-link">Log Out</a>
         <a href="/reservationlookup">Reservation Summary</a>
     </div>
+    <script src="/js/nav.js"></script>
 
     <div class="booking-container">
         <h1 style="text-align: center; margin-top: 2rem;">Book Your Stay</h1>
+
 
         <div class="date-selection" style="margin: 2rem auto; text-align: center;">
             <div style="max-width: 500px; margin: 0 auto;">
@@ -129,8 +140,12 @@
                     placeholder="Select your dates">
                 <button onclick="checkAvailability()"
                     style="padding: 0.8rem 2rem; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                    Check Availability
-                </button>
+                    <input id="dateselect" type="text" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem;"
+                        placeholder="Select your dates">
+                    <button onclick="checkAvailability()"
+                        style="padding: 0.8rem 2rem; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Check Availability
+                    </button>
             </div>
         </div>
 
@@ -138,8 +153,8 @@
         <div id="roomsContainer"></div>
     </div>
 
-
 </body>
 <script src="/js/reservation.js"></script>
+
 
 </html>

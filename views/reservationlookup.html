@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Reservation Summary - Cozy Cavern B&B</title>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="/style/Style.css">
     <link rel="stylesheet" href="/style/login.css">
     <link href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang&display=swap"
-      rel="stylesheet">
+        rel="stylesheet">
 
     <style>
         /* Additions to previous styles */
@@ -68,14 +69,17 @@
         }
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <a href="/">Home</a>
         <a href="/about">About Us</a>
         <a href="/reservation">Reservations</a>
         <a href="/registration">Register</a>
-        <a href="/login">Log In</a>
+        <a href="/login" id="login-link">Log In</a>
+        <a href="/logout" id="logout-link">Log Out</a>
     </div>
+    <script src="/js/nav.js"></script>
 
     <div class="summary-container">
         <!-- Previous summary content -->
@@ -111,8 +115,7 @@
                 <button class="secondary-button" onclick="resendConfirmation()">
                     ✉️ Resend Confirmation
                 </button>
-                <button class="secondary-button" id="paymentButton" 
-                    onclick="completePayment()" style="display: none;">
+                <button class="secondary-button" id="paymentButton" onclick="completePayment()" style="display: none;">
                     💳 Complete Payment
                 </button>
             </div>
@@ -123,9 +126,9 @@
         // Additions to previous script
         async function displayReservation(booking) {
             // Previous code
-            
+
             // Show payment button if pending
-            if(booking.paymentStatus === 'pending') {
+            if (booking.paymentStatus === 'pending') {
                 document.getElementById('paymentButton').style.display = 'block';
             }
 
@@ -137,7 +140,7 @@
             try {
                 const response = await fetch(`/api/weather?date=${checkInDate}`);
                 const weather = await response.json();
-                
+
                 const weatherHTML = `
                     <img src="${weather.icon}" class="weather-icon">
                     <div>
@@ -160,7 +163,7 @@
             try {
                 const response = await fetch(`/api/bookings/${bookingId}/calendar`);
                 const ics = await response.text();
-                
+
                 const blob = new Blob([ics], { type: 'text/calendar' });
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
@@ -195,9 +198,10 @@
             fetch(`/api/bookings/${bookingId}/resend`, {
                 method: 'POST'
             })
-            .then(() => alert('Confirmation resent to your email!'))
-            .catch(() => alert('Error resending confirmation'));
+                .then(() => alert('Confirmation resent to your email!'))
+                .catch(() => alert('Error resending confirmation'));
         }
     </script>
 </body>
+
 </html>
