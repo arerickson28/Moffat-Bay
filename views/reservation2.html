@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
+
+    <!--External CSS Files -->
+    <title>Reservation</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/reservation.css">
+
+    <!-- Google Fonts --> 
+    <link href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang&display=swap"
+      rel="stylesheet">
+</head>
+
+    <!-- Nav Bar -->
+    <div class="title">
+        <div class="navbar">
+          <a href="/">Home</a>
+          <a href="/about">About Us</a>
+          <a href="/registration">Register</a>
+          <a href="/login" id="login-link">Log In</a>
+          <a href="/logout" id="logout-link">Log Out</a>
+          <a href="/reservation">Reservations</a>
+          <a href="/reservationlookup">Reservation Summary</a>
+    
+          <!-- Optional, if we create this page, later --> 
+          <!-- <a href="contact-us.html">Contact Us</a> -->
+          <script src="/js/nav.js"></script>
+        </div>
+
+<body>
+
+
+
+        <!-- Booking date selection --> 
+      </div>
+    <div class="booking-date">
+        <div class="date-picker">
+            <div class="date-field">
+                <label for="check-in-out">Check-in → Check-out</label>
+                <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
+            </div>
+        </div>
+
+
+        <!-- Search Button -->
+        <button type="button" class="search-button">Search</button>
+    </div>
+    
+
+    <!-- Reservation form selection -->
+    <div class="form-section">
+        <h3>Number of guests:</h3>
+        <input type="number" id="guestCount" min="1" placeholder="Guest Count">
+    
+        <label for="roomSelection">Select room type:</label>
+        <select id="roomSelection">
+          <option value="0">--select--</option>
+          <option value="1">Double, Full (120.00 Per Night)</option>
+          <option value="2">Queen, Single (135.00 Per Night)</option>
+          <option value="3">Queen, Double (150.00 Per Night)</option>
+          <option value="4">King, Single (160.00 Per Night)</option>
+        </select>
+    
+        <button id="submitButton">Submit</button>
+      </div>
+
+
+   <div class="room-slideshow">
+        <div class="slide-container">
+            <div class="slides">
+                <img src="/images/doublefull.jpg" alt="Room with Two Full Beds">
+                <img src="/images/queensingle.jpg" alt="A bedroom a Single Queen Bed">
+                <img src="/images/doublequeen2.jpeg" alt="A bedroom with two Queen Beds">
+                <img src="/images/kingsingle.jpg" alt="A bedroom with a single King bed"> 
+            </div>
+
+            <!-- Our left arrow-->
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <!-- Our right arrow-->
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+        </div>   
+
+    </body>
+<script src="/js/reservation2.js"></script>
+<script src="/js/index.js"></script>
+</html>
+
+
+
+<!-- 
+const { userId, roomId, guestCount, checkInDate, checkOutDate } = req.body; -->
