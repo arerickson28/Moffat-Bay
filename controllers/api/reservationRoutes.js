@@ -2,6 +2,11 @@ const router = require('express').Router();
 const { User, Reservation, Room } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// function to check to make sure confirmation  number is made of only upper/lower letters and numbers
+const isValidConfirmationNumber = (code) => {
+  return /^[A-Za-z0-9]{8}$/i.test(code);
+};
+
 //create new reservation
 // will look like http://localhost:3001/api/reservations/newRes
 router.post('/newRes', withAuth, async (req, res) => {
@@ -13,9 +18,9 @@ router.post('/newRes', withAuth, async (req, res) => {
     }
 
     // this bit checks to make sure the frontend has sent the data required to create a new reservation
-    const { userId, roomId, guestCount, checkInDate, checkOutDate } = req.body;
-    if (!userId || !roomId || !guestCount || !checkInDate || !checkOutDate) {
-      return res.status(400).json({ error: 'missing required fields. To create a new reservation, please provide the userId, roomId, guestCount, checkInDate, and checkOutDate. The reservation status is not needed as the default status for a new reservation is pending' });
+    const { userId, roomId, guestCount, checkInDate, checkOutDate, confirmationNumber } = req.body;
+    if (!userId || !roomId || !guestCount || !checkInDate || !checkOutDate || !confirmationNumber) {
+      return res.status(400).json({ error: 'missing required fields. To create a new reservation, please provide the userId, roomId, guestCount, checkInDate, checkOutDate, and confirmation number. The reservation status is not needed as the default status for a new reservation is pending' });
     }
 
     // function to validate date format using a regex or Date constructor
@@ -34,6 +39,11 @@ router.post('/newRes', withAuth, async (req, res) => {
       return res.status(400).json({ error: 'checkOutDate must be after checkInDate' });
     }
 
+    // if for some reason the confirmation number is missing or is invalid, send an error
+    if (!confirmationNumber || !isValidConfirmationNumber(confirmationNumber)) {
+      return res.status(400).json({ error: 'Invalid or missing confirmation number format.' });
+    }
+
     // create new reservation
     const newRes = await Reservation.create(
       {
@@ -41,7 +51,8 @@ router.post('/newRes', withAuth, async (req, res) => {
         room_id: roomId,
         guest_count: guestCount,
         check_in_date: checkInDate,
-        check_out_date: checkOutDate
+        check_out_date: checkOutDate,
+        confirmation_number: confirmationNumber
       }
     );
 
@@ -50,8 +61,15 @@ router.post('/newRes', withAuth, async (req, res) => {
 
 
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: 'Something went wrong', details: err.message });
+    // in the nearly impossible case that a confirmation number already exists, send back this error
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      return res.status(409).json({
+        error: 'Confirmation number already exists. Please retry with a new one.'
+      });
+    }
+
+    console.error('Error creating reservation:', err);
+    return res.status(500).json({ error: 'Internal server error.' });
   }
 });
 

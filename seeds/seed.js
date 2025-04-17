@@ -61,33 +61,32 @@ async function seedDatabase() {
         room_id: rooms[0].id,
         check_in_date: '2025-10-15',
         check_out_date: '2025-10-20',
-        room_type: 'Ocean View',
         guest_count: 2,
+        confirmation_number: "1234567c"
       },
       {
         user_id: users[0].id,
         room_id: rooms[1].id,
         check_in_date: '2025-10-15',
         check_out_date: '2025-10-20',
-        room_type: 'Ocean View',
         guest_count: 2,
+        confirmation_number: "1234567b"
       },
       {
         user_id: users[1].id,
         room_id: rooms[1].id,
         check_in_date: '2025-11-01',
         check_out_date: '2025-11-05',
-        room_type: 'Mountain View',
         guest_count: 4,
+        confirmation_number: "1234567a"
       },
       {
         user_id: users[2].id,
         room_id: rooms[2].id,
         check_in_date: '2025-12-10',
         check_out_date: '2025-12-15',
-        room_type: 'Suite',
         guest_count: 3,
-        status: 'Pending',
+        confirmation_number: "12345678"
       },
     ]);
 
