@@ -1,12 +1,3 @@
-// Group 1 Capstone Database
-// Roald Medendorp
-// Austen Erickson 
-// Deena Linehan 
-// Giabella Apo 
-// Kristina Vasquez 
-// Thunder Harding 
-// Violet Gonzalez 
-
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -29,10 +20,6 @@ const Reservation = sequelize.define('Reservation', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  status: {
-    type: DataTypes.ENUM('Confirmed', 'Pending'),
-    defaultValue: 'Pending',
-  },
   room_id: {
     type: DataTypes.INTEGER,
     references: {
@@ -47,6 +34,14 @@ const Reservation = sequelize.define('Reservation', {
       key: 'id',
     },
   },
+  confirmation_number: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      is: /^[A-Za-z0-9]{8}$/ // Allows a-z, A-Z, 0-9, Number of characters, 8
+    }
+  }
 },
   {
     timestamps: false
