@@ -53,11 +53,14 @@ router.get('/reservationlookup', withAuth,(req, res) => {
 //     res.sendFile(path.join(__dirname, '../views/contact.html'));
 // });
 
-// // Attractions Page
-// will look like http://localhost:3001/attractions
-// router.get('/attractions', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../views/attractions.html'));
-// });
-
+// Things to Do Page
+router.get('/todo', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/todo.html'));
+  });
+  
+  // Amenities Page
+  router.get('/amenities', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/Amenities.html'));
+  });
 
 module.exports = router;
