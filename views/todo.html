@@ -33,17 +33,21 @@
 
 <body>
     <div class="title">
-        <div class="navbar">
+      <div class="navbar">
         <a href="/">Home</a>
         <a href="/about">About Us</a>
-        <a href="/registration">Register</a>
+        <a href="/amenities">Amenities</a>
+        <div id="dropdownWrapper" style="position: relative; display: inline-block;">
+          <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations ▼</a>
+          
+          <div id="dropdownMenu" class="dropdown hidden">
+            <a href="/reservation">Make Resveration</a>
+            <a href="/reservationlookup">Lookup Reservation</a>
+          </div>
+        </div>
         <a href="/login" id="login-link">Log In</a>
         <a href="/logout" id="logout-link">Log Out</a>
-        <a href="/reservation">Reservations</a>
-        <a href="/reservationlookup">Reservation Summary</a>
-		<a href="/todo">Things to Do</a>
-        <a href="/amenities">Amenities</a>
-        </div>
+      </div>
     </div>
 
     <main class="container">

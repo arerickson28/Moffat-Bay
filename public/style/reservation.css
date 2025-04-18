@@ -118,3 +118,7 @@
     font-size: 1.2em;
     color: #000000;
 }
+
+.hidden {
+  display: none;
+}

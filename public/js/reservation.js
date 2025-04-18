@@ -1,131 +1,123 @@
-// Mock database of rooms
-const rooms = [
-    {
-        id: 1,
-        name: "Ocean View Suite",
-        price: 249,
-        image: "/images/sea-bedroom.jpg",
-        description: "Spacious suite with panoramic ocean views and private balcony",
-        capacity: 2,
-        amenities: ["King bed", "Ocean view", "Private bathroom", "Breakfast included"]
-    },
-    {
-        id: 2,
-        name: "Garden Retreat",
-        price: 189,
-        image: "/images/garden-room.jpg",
-        description: "Cozy room overlooking our private flower garden",
-        capacity: 2,
-        amenities: ["Queen bed", "Garden view", "Private bathroom", "Breakfast included"]
-    },
-    {
-        id: 3,
-        name: "Lighthouse Suite",
-        price: 349,
-        image: "/images/lighthouse-suite.jpg",
-        description: "Unique suite in historic lighthouse with 360° views",
-        capacity: 4,
-        amenities: ["Two queen beds", "Private terrace", "Jacuzzi", "Champagne welcome"]
-    }
-];
+console.log("hellooooooooo");
 
-// Initialize date picker
-let picker;
-document.addEventListener("DOMContentLoaded", () => {
-    picker = new easepick.create({
+// let makeReservationDiv = document.getElementById("make-reservation-div")
+// let makeReservationAnchor = document.getElementById("make-reservation-a")
+// let lookupReservationAnchor = document.getElementById("lookup-reservation-a")
+
+// makeReservationAnchor.addEventListener('click', () => {
+//     makeReservationDiv.classList.toggle("hidden")
+//     lookupReservationAnchor.classList.toggle('hidden')
+// })
+
+// Submit button logic
+let submitButton = document.getElementById("submitButton");
+submitButton.addEventListener('click', async () => {
+    let guestCountRetrieved = document.getElementById("guestCount").value;
+    let bedSelectionRetrieved = document.getElementById("roomSelection").value;
+    const dateRange = document.getElementById("dateselect").value;
+    const [checkInDate, checkOutDate] = dateRange.split(" - ");
+    
+    try {
+        let response = await fetch("/api/session/getSession", {
+            method: 'GET'
+        });
+    
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    
+        const sessionData = await response.json();
+        // console.log(sessionData);
+
+        let preparedBody = {
+            "guestCount": guestCountRetrieved,
+            "userId": sessionData.userId,
+            "roomId": bedSelectionRetrieved,
+            "checkInDate": checkInDate,
+            "checkOutDate": checkOutDate
+        }
+
+        const response2 = await fetch('/api/reservations/newRes', {
+            method: 'POST',
+            body: JSON.stringify(preparedBody),
+            headers: { 'Content-Type': 'application/json' }
+        })
+
+        if (!response2.ok) throw new Error('Second fetch failed');
+        const data2 = await response2.json();
+        console.log(data2)
+
+        console.log(preparedBody);
+    } catch (error) {
+        console.error("Error fetching session data:", error);
+    }
+});
+
+
+// Once the HTML strucutre is ready then the code can execute for the date picker
+document.addEventListener("DOMContentLoaded", function () {
+    const picker = new easepick.create({
         element: document.getElementById('dateselect'),
-        css: ['https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css'],
-        plugins: ['RangePlugin', 'LockPlugin'],
+        css: [
+            'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
+        ],
+        setup(picker) {
+            picker.on('select', (e) => {
+                const { view, date, target } = e.detail;
+            });
+        },
         RangePlugin: {
             tooltip: true,
         },
+        AmpPlugin: {
+            dropdown: {
+                months: true,
+                years: true,
+                minYear: new Date().getFullYear(),
+            },
+        },
         LockPlugin: {
             minDate: new Date(),
-        }
+        },
+        plugins: ['RangePlugin', 'LockPlugin', 'AmpPlugin'],
+        grid: 2,
+        calanders: 2
     });
 });
 
-async function checkAvailability() {
-    const dates = picker.getDatePicker();
-    if (!dates || dates.length < 2) {
-        alert("Please select both check-in and check-out dates");
-        return;
+// Once the HTML strucutre is ready then the code can execute the slide
+document.addEventListener("DOMContentLoaded", function () {
+
+    let slides = document.querySelectorAll('.slides img');
+    if (slides.length > 0) {
+        slides[0].classList.add('active');
     }
 
-    showLoading(true);
+    window.slideIndex = 0
 
-    // Simulate API call
-    setTimeout(() => {
-        showLoading(false);
-        displayRooms(rooms);
-    }, 1000);
-}
+    // fucntion to change slides - must be in global scope
+    window.changeSlide = function (n) {
+        let slides = document.querySelectorAll('.slides img');
 
-function displayRooms(availableRooms) {
-    const container = document.getElementById('roomsContainer');
+        if (slides.length === 0) return;
 
-    if (availableRooms.length === 0) {
-        container.innerHTML = `
-            <div class="availability-message">
-                No rooms available for selected dates. Please try different dates.
-            </div>
-        `;
-        return;
-    }
+        window.slideIndex += n;
 
-    container.innerHTML = `
-        <div class="room-grid">
-            ${availableRooms.map(room => `
-                <div class="room-card">
-                    <img src="${room.image}" alt="${room.name}" class="room-image">
-                    <div class="room-details">
-                        <h3 class="room-title">${room.name}</h3>
-                        <p>${room.description}</p>
-                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                            ${room.amenities.map(a => `<li>✔️ ${a}</li>`).join('')}
-                        </ul>
-                        <p class="room-price">$${room.price}/night</p>
-                        <button class="book-btn" onclick="startBooking(${room.id})">
-                            Book Now
-                        </button>
-                    </div>
-                </div>
-            `).join('')}
-        </div>
-    `;
-}
+        // Handles boundaries 
+        if (window.slideIndex >= slides.length) { window.slideIndex = 0 }
+        if (window.slideIndex < 0) { window.slideIndex = slides.length - 1 }
 
-function showLoading(show) {
-    document.getElementById('loadingSpinner').style.display = show ? 'block' : 'none';
-}
+        // Hide the slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
 
-function startBooking(roomId) {
-    const selectedRoom = rooms.find(r => r.id === roomId);
-    const dates = picker.getDatePicker();
+        // Show the current slide
+        slides[window.slideIndex].classList.add('active');
+    };
 
-    if (!dates || dates.length < 2) {
-        alert("Please select dates first");
-        return;
-    }
-
-    const checkIn = dates[0].toLocaleDateString();
-    const checkOut = dates[1].toLocaleDateString();
-
-    const confirmation = confirm(
-        `Confirm booking:\n
-        Room: ${selectedRoom.name}\n
-        Check-in: ${checkIn}\n
-        Check-out: ${checkOut}\n
-        Total: $${calculateTotal(selectedRoom.price, dates)}`
-    );
-
-    if (confirmation) {
-        // Here you would typically redirect to a payment page
-        alert("Booking confirmed! Redirecting to payment...");
-    }
-}
-
-function calculateTotal(pricePerNight, dates) {
-    const nights = Math.ceil((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
-    return pricePerNight * nights;
-}
+    // Autoplays the slideshow in a 5 sec. period
+    setInterval(function () {
+        changeSlide(1);
+    }, 5000);
+});
