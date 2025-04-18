@@ -29,11 +29,9 @@ html {
     text-align: center;
     opacity: 95%;
     width: 100%;
-    /* overflow: hidden; */
     position: relative;
     max-width: 100%;
 }
-
 
 .navbar {
     top: 0;
@@ -59,21 +57,18 @@ html {
     text-align: center;
 }
 
-.navbar div {
-    /* padding: 15px 20px; */
-    text-decoration: none;
-    color: #000000;
-    display: inline-block;
-    text-align: center;
-}
 
-/* .hidden {
+.hidden {
     display: none;
-  } */
+  }
+  
+  .hidden {
+    display: none;
+  }
   
   .dropdown {
     position: absolute;
-    top: 100%;           
+    top: 100%;              /* directly below the anchor */
     left: 0;
     background-color: white;
     border: 1px solid #ccc;
@@ -83,18 +78,6 @@ html {
     z-index: 1000;
   }
   
-  .dropdownWrapper {
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    /* padding: 15; */
-        height: 100%;
-  }
-
-  .dropdownMenu {
-    padding: 0px;
-  }
-
   .dropdown a {
     display: block;
     padding: 0.5em 1em;
@@ -106,6 +89,10 @@ html {
     background-color: #f0f0f0;
   }
 
+  #dropdownMenu {
+    padding: 0;
+  }
+ 
 a:hover {
     background-color: transparent;
     color: #f7b3bd;

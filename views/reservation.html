@@ -23,9 +23,9 @@
     <a href="/about">About Us</a>
     <a href="/amenities">Amenities</a>
     <div id="dropdownWrapper" style="position: relative; display: inline-block;">
-      <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations ▼</a>
+      <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
       <div id="dropdownMenu" class="dropdown hidden">
-        <a href="/reservation">Make Resveration</a>
+        <a href="/reservation">Make Reservation</a>
         <a href="/reservationlookup">Lookup Reservation</a>
       </div>
     </div>
@@ -41,41 +41,38 @@
 </div>
 <div style="margin-bottom: 50px;">
   <h1 style="text-decoration: underline; text-decoration-thickness: 3px;"">Make A Reservation</h1>
-  <!-- <a id="make-reservation-a"><h1 style="text-decoration: underline; text-decoration-thickness: 3px;">Make A Reservation</h1></a>
-  <br>
-  <a id="lookup-reservation-a"><h1 style="text-decoration: underline; text-decoration-thickness: 3px;">Lookup A Reservation</h1></a> -->
 </div>
 
 
 <div id="make-reservation-div">
-<div class="booking-date">
+  <div class="booking-date">
 
-  <div class="date-picker">
-    <div class="date-field">
-      <label for="check-in-out">Check-in → Check-out</label>
-      <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
+    <div class="date-picker">
+      <div class="date-field">
+        <label for="check-in-out">Check-in → Check-out</label>
+        <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
+      </div>
     </div>
+
   </div>
 
-</div>
 
+  <!-- Reservation form selection -->
+  <div class="form-section">
+    <h3>Number of guests:</h3>
+    <input type="number" id="guestCount" min="1" placeholder="Guest Count">
 
-<!-- Reservation form selection -->
-<div class="form-section">
-  <h3>Number of guests:</h3>
-  <input type="number" id="guestCount" min="1" placeholder="Guest Count">
+    <label for="roomSelection">Select room type:</label>
+    <select id="roomSelection">
+      <option value="0">--select--</option>
+      <option value="1">Double, Full (120.00 Per Night)</option>
+      <option value="2">Queen, Single (135.00 Per Night)</option>
+      <option value="3">Queen, Double (150.00 Per Night)</option>
+      <option value="4">King, Single (160.00 Per Night)</option>
+    </select>
 
-  <label for="roomSelection">Select room type:</label>
-  <select id="roomSelection">
-    <option value="0">--select--</option>
-    <option value="1">Double, Full (120.00 Per Night)</option>
-    <option value="2">Queen, Single (135.00 Per Night)</option>
-    <option value="3">Queen, Double (150.00 Per Night)</option>
-    <option value="4">King, Single (160.00 Per Night)</option>
-  </select>
-
-  <button id="submitButton">Submit</button>
-</div>
+    <button id="submitButton">Submit</button>
+  </div>
 </div>
 
 
