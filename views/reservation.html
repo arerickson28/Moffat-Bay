@@ -2,161 +2,98 @@
 <html lang="en">
 
 <head>
-    <title>Reservations - Cozy Cavern Bed & Breakfast</title>
-    <meta charset="UTF-8">
-    <meta name="authors" content="Roald Medendorp" />
-    <meta name="description" content="Reserve your stay at our seaside B&B" />
-    <meta name="keywords" content="reservations, booking, bed and breakfast, seaside" />
-    <meta name="robots" content="nofollow" />
-    <link rel="stylesheet" href="/style/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
-    <style>
-        .booking-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
 
-        .room-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+  <!--External CSS Files -->
+  <title>Reservation</title>
+  <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="/style/reservation.css">
 
-        .room-card {
-            background: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .room-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .room-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .room-details {
-            padding: 1.5rem;
-        }
-
-        .room-title {
-            font-family: 'BhuTuka Expanded One', cursive;
-            color: #2c3e50;
-            margin: 0 0 1rem 0;
-        }
-
-        .room-price {
-            font-size: 1.5rem;
-            color: #27ae60;
-            margin: 1rem 0;
-        }
-
-        .book-btn {
-            background: #3498db;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.3s ease;
-        }
-
-        .book-btn:hover {
-            background: #2980b9;
-        }
-
-        .availability-message {
-            text-align: center;
-            padding: 2rem;
-            font-size: 1.2rem;
-        }
-
-        .loading-spinner {
-            display: none;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 2rem auto;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang&display=swap"
+    rel="stylesheet">
 </head>
 
-<body>
-    <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/registration">Register</a>
-        <a href="/login" id="login-link">Log In</a>
-        <a href="/logout" id="logout-link">Log Out</a>
-        <a href="/reservation">Reservations</a>
-        <a href="/reservationlookup">Reservation Summary</a>
-		<a href="/todo">Things to Do</a>
-        <a href="/amenities">Amenities</a>
+<!-- Nav Bar -->
+<div class="title">
+  <div class="navbar">
+    <a href="/">Home</a>
+    <a href="/about">About Us</a>
+    <a href="/amenities">Amenities</a>
+    <div id="dropdownWrapper" style="position: relative; display: inline-block;">
+      <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
+      <div id="dropdownMenu" class="dropdown hidden">
+        <a href="/reservation">Make Reservation</a>
+        <a href="/reservationlookup">Lookup Reservation</a>
+      </div>
     </div>
-    <script src="/js/nav.js"></script>
+    <a href="/login" id="login-link">Log In</a>
+    <a href="/logout" id="logout-link">Log Out</a>
+  </div>
+  <script src="/js/nav.js"></script>
 
-    <div class="booking-container">
-        <h1 style="text-align: center; margin-top: 2rem;">Book Your Stay</h1>
+  <body>
 
 
-        <div class="date-selection" style="margin: 2rem auto; text-align: center;">
-            <div style="max-width: 500px; margin: 0 auto;">
-                <label for="dateselect" style="display: block; margin-bottom: 0.5rem;">
-                    Select Check-in and Check-out Dates
-                </label>
-                <input id="dateselect" type="text" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem;"
-                    placeholder="Select your dates">
-                <button onclick="checkAvailability()"
-                    style="padding: 0.8rem 2rem; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                    <input id="dateselect" type="text" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem;"
-                        placeholder="Select your dates">
-                    <button onclick="checkAvailability()"
-                        style="padding: 0.8rem 2rem; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                        Check Availability
-                    </button>
-            </div>
-        </div>
+    <!-- Booking date selection -->
+</div>
+<div style="margin-bottom: 50px;">
+  <h1 style="text-decoration: underline; text-decoration-thickness: 3px;"">Make A Reservation</h1>
+</div>
 
-        <div class="loading-spinner" id="loadingSpinner"></div>
-        <div id="roomsContainer"></div>
+
+<div id="make-reservation-div">
+  <div class="booking-date">
+
+    <div class="date-picker">
+      <div class="date-field">
+        <label for="check-in-out">Check-in → Check-out</label>
+        <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
+      </div>
     </div>
 
-</body>
-<script src="/js/reservation.js"></script>
+  </div>
 
+
+  <!-- Reservation form selection -->
+  <div class="form-section">
+    <h3>Number of guests:</h3>
+    <input type="number" id="guestCount" min="1" placeholder="Guest Count">
+
+    <label for="roomSelection">Select room type:</label>
+    <select id="roomSelection">
+      <option value="0">--select--</option>
+      <option value="1">Double, Full (120.00 Per Night)</option>
+      <option value="2">Queen, Single (135.00 Per Night)</option>
+      <option value="3">Queen, Double (150.00 Per Night)</option>
+      <option value="4">King, Single (160.00 Per Night)</option>
+    </select>
+
+    <button id="submitButton">Submit</button>
+  </div>
+</div>
+
+
+<div class="room-slideshow">
+  <div class="slide-container">
+    <div class="slides">
+      <img src="/images/doublefull.jpg" alt="Room with Two Full Beds">
+      <img src="/images/queensingle.jpg" alt="A bedroom a Single Queen Bed">
+      <img src="/images/doublequeen2.jpeg" alt="A bedroom with two Queen Beds">
+      <img src="/images/kingsingle.jpg" alt="A bedroom with a single King bed">
+    </div>
+
+    <!-- Our left arrow-->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <!-- Our right arrow-->
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+  </div>
+
+  </body>
+
+  <script src="/js/reservation.js"></script>
 
 </html>

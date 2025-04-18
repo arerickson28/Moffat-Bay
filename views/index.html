@@ -49,30 +49,19 @@
     <div class="navbar">
         <a href="/">Home</a>
         <a href="/about">About Us</a>
-        <a href="/registration">Register</a>
+        <a href="/amenities">Amenities</a>
+        <div id="dropdownWrapper" style="position: relative; display: inline-block;">
+            <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
+            <div id="dropdownMenu" class="dropdown hidden">
+                <a href="/reservation">Make Reservation</a>
+                <a href="/reservationlookup">Lookup Reservation</a>
+            </div>
+        </div>
         <a href="/login" id="login-link">Log In</a>
         <a href="/logout" id="logout-link">Log Out</a>
-        <a href="/reservation">Reservations</a>
-        <a href="/reservationlookup">Reservation Summary</a>
-
-        <!-- <a href="contact-us.html">Contact Us</a> -->
     </div>
     <script src="/js/nav.js"></script>
     <hr width="30%"> <!-- Add a bottom line for seperation of date and person input-->
-
-    
-    <!-- Need the basic HTML for the date picker /// Not needed here
-    <div class="booking-date">
-        <div class="date-picker">
-            <div class="date-field">
-                <label for="check-in-out">Check-in → Check-out</label>
-                <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
-            </div>
-        </div>
-
-        <button type="button" class="search-button">Search</button>
-    </div> -->
-
 
     <div class="content">
         <div class="Home-first">
