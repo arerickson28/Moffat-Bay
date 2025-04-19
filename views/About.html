@@ -23,13 +23,18 @@
     <style>
         .floating-text {
             opacity: 0;
+            /* Make it invisible at the start */
             transition: top 0.3s ease-out, opacity 0.2s ease-out;
+            /* Smooth transition for movement and fade */
             transform: translateY(20px);
+            /*starts 20px below the final position */
         }
 
         .floating-text.visible {
             opacity: 1;
+            /* Make it visible */
             transform: translateY(0);
+            /* final position */
         }
     </style>
 </head>
@@ -56,6 +61,9 @@
         <a href="/logout" id="logout-link">Log Out</a>
     </div>
     <script src="/js/nav.js"></script>
+    <hr width="30%">
+
+    <br>
 
     <div class="AboutUs-first">
         <h1 class="floating-text">About Us</h1>
@@ -114,16 +122,21 @@
                 floatingText.classList.remove('visible');
             }
         });
-
+        // Once the HTML strucutre is ready then the code can execute
         document.addEventListener("DOMContentLoaded", function () {
             const floatingText = document.querySelector('.floating-text');
+
+            // add a small delay before the text actually shows
             setTimeout(function () {
+                // The visable clas is to make the text appear and triggers the css notated
                 floatingText.classList.add('visible');
             }, 100);
         });
-    </script>
 
-    <br><br>
+    </script>
+    
+
+    <!--Added a footer to allow foor contact infromation to be listed-->
 
     <footer>
         <p>Feel free to contact us if you have any questions or need any assistance!<br>Contact Us: (808)-222-2244
