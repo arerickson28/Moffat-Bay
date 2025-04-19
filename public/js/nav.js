@@ -1,3 +1,12 @@
+{/* <div id="loggedInIconDiv">
+<h2>Logged In: <span id="userFirstName"></span></h>
+</div> */}
+
+let loggedInIconDiv = document.getElementById("loggedInIconDiv");
+let userFirstName = document.getElementById("userFirstName");
+
+
+
 // function to flip the hiding or displaying of an element
 function toggleVisibility(id, show) {
     const el = document.getElementById(id);
@@ -30,10 +39,15 @@ function toggleDropdown(event) {
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/session/getSession')
         .then(res => res.json())
-        .then(({ logged_in }) => {
+        .then(({ logged_in, firstName }) => {
             toggleVisibility('login-link', !logged_in);
             toggleVisibility('logout-link', logged_in);
             toggleVisibility('reservation-link', logged_in);
+            toggleVisibility('loggedInIconDiv', logged_in)
+            if (firstName) {
+                userFirstName.innerHTML = firstName
+                console.log(userFirstName)
+            }
         });
 });
 
