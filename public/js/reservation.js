@@ -74,6 +74,11 @@ submitButton.addEventListener('click', async () => {
 
        // show modal and set confirmation code
         document.getElementById("confirmationCode").textContent = confirmationNumber;
+        document.getElementById("modalConfirmationNumber").textContent = confirmationNumber;
+        document.getElementById("modalCheckIn").textContent = checkInDate;
+        document.getElementById("modalCheckOut").textContent = checkOutDate;
+        document.getElementById("modalGuests").textContent = guestCountRetrieved;
+        document.getElementById("modalRoomType").textContent = document.getElementById("roomSelection").options[document.getElementById("roomSelection").selectedIndex].text;
         document.getElementById("confirmationModal").style.display = "block";
         console.log(preparedBody);
     } catch (error) {
@@ -81,10 +86,6 @@ submitButton.addEventListener('click', async () => {
     }
 });
 
-// Close modal on 'X' click
-document.getElementById("closeModalBtn").addEventListener("click", () => {
-    document.getElementById("confirmationModal").style.display = "none";
-  });
 
 // defining picker in the global scope
 let picker;
@@ -155,3 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
         changeSlide(1);
     }, 5000);
 });
+
+// Close modal on 'X' click
+document.getElementById("closeModalBtn").addEventListener("click", () => {
+    document.getElementById("confirmationModal").style.display = "none";
+  });
