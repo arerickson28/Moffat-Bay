@@ -44,35 +44,39 @@
 </div>
 
 
-<div id="make-reservation-div">
-  <div class="booking-date">
+<div id=" make-reservation-div">
+    <div class="booking-date">
 
-    <div class="date-picker">
-      <div class="date-field">
-        <label for="check-in-out">Check-in → Check-out</label>
-        <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
+      <div class="date-picker">
+        <div class="date-field">
+          <label for="check-in-out">Check-in → Check-out</label>
+          <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
+        </div>
       </div>
+
     </div>
 
-  </div>
 
+    <!-- Reservation form selection -->
+    <div class="form-section">
+      <h3>Number of guests:</h3>
+      <input type="number" id="guestCount" min="1" placeholder="Guest Count">
 
-  <!-- Reservation form selection -->
-  <div class="form-section">
-    <h3>Number of guests:</h3>
-    <input type="number" id="guestCount" min="1" placeholder="Guest Count">
+      <label for="roomSelection">Select room type:</label>
+      <select id="roomSelection">
+        <option value="0">--select--</option>
+        <option value="1">Double, Full (120.00 Per Night)</option>
+        <option value="2">Queen, Single (135.00 Per Night)</option>
+        <option value="3">Queen, Double (150.00 Per Night)</option>
+        <option value="4">King, Single (160.00 Per Night)</option>
+      </select>
 
-    <label for="roomSelection">Select room type:</label>
-    <select id="roomSelection">
-      <option value="0">--select--</option>
-      <option value="1">Double, Full (120.00 Per Night)</option>
-      <option value="2">Queen, Single (135.00 Per Night)</option>
-      <option value="3">Queen, Double (150.00 Per Night)</option>
-      <option value="4">King, Single (160.00 Per Night)</option>
-    </select>
-
-    <button id="submitButton">Submit</button>
-  </div>
+      <button id="submitButton">Submit</button>
+      <div id="confirmationDiv">
+        <h3>Reservation Confirmed!</h3>
+        <h4>Your confirmation code is: <span id="confirmationCode"></span></h4>
+      </div>
+    </div>
 </div>
 
 
