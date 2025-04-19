@@ -72,14 +72,19 @@ submitButton.addEventListener('click', async () => {
             picker.clear();
         }
 
-        // reveal confirmation message and load confirmation number
-        confimrationDiv.classList.remove("hidden");
-        confirmationCode.innerHTML = `${confirmationNumber}`
+       // show modal and set confirmation code
+        document.getElementById("confirmationCode").textContent = confirmationNumber;
+        document.getElementById("confirmationModal").style.display = "block";
         console.log(preparedBody);
     } catch (error) {
         console.error("Error fetching session data:", error);
     }
 });
+
+// Close modal on 'X' click
+document.getElementById("closeModalBtn").addEventListener("click", () => {
+    document.getElementById("confirmationModal").style.display = "none";
+  });
 
 // defining picker in the global scope
 let picker;
