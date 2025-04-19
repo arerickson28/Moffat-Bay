@@ -48,6 +48,7 @@
 
 
 <div id=" make-reservation-div">
+<<<<<<< HEAD
       <div class="booking-date">
 
         <div class="date-picker">
@@ -98,5 +99,61 @@
 </body>
 
 <script src="/js/reservation.js"></script>
+=======
+    <div class="booking-date">
+
+      <div class="date-picker">
+        <div class="date-field">
+          <label for="check-in-out">Check-in → Check-out</label>
+          <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Reservation form selection -->
+    <div class="form-section">
+      <h3>Number of guests:</h3>
+      <input type="number" id="guestCount" min="1" placeholder="Guest Count">
+
+      <label for="roomSelection">Select room type:</label>
+      <select id="roomSelection">
+        <option value="0">--select--</option>
+        <option value="1">Double, Full (120.00 Per Night)</option>
+        <option value="2">Queen, Single (135.00 Per Night)</option>
+        <option value="3">Queen, Double (150.00 Per Night)</option>
+        <option value="4">King, Single (160.00 Per Night)</option>
+      </select>
+
+      <button id="submitButton">Submit</button>
+      <div id="confirmationDiv">
+        <h3>Reservation Confirmed!</h3>
+        <h4>Your confirmation code is: <span id="confirmationCode"></span></h4>
+      </div>
+    </div>
+</div>
+
+
+<div class="room-slideshow">
+  <div class="slide-container">
+    <div class="slides">
+      <img src="/images/doublefull.jpg" alt="Room with Two Full Beds">
+      <img src="/images/queensingle.jpg" alt="A bedroom a Single Queen Bed">
+      <img src="/images/doublequeen2.jpeg" alt="A bedroom with two Queen Beds">
+      <img src="/images/kingsingle.jpg" alt="A bedroom with a single King bed">
+    </div>
+
+    <!-- Our left arrow-->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <!-- Our right arrow-->
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+  </div>
+
+  </body>
+
+  <script src="/js/reservation.js"></script>
+>>>>>>> main
 
 </html>

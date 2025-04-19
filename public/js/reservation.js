@@ -1,40 +1,55 @@
 console.log("hellooooooooo");
 
-// let makeReservationDiv = document.getElementById("make-reservation-div")
-// let makeReservationAnchor = document.getElementById("make-reservation-a")
-// let lookupReservationAnchor = document.getElementById("lookup-reservation-a")
+// if the confirmation div has been revealed from a previous reservation, hide it
+const confimrationDiv = document.getElementById("confirmationDiv")
+confimrationDiv.classList.add("hidden")
 
-// makeReservationAnchor.addEventListener('click', () => {
-//     makeReservationDiv.classList.toggle("hidden")
-//     lookupReservationAnchor.classList.toggle('hidden')
-// })
+// if the confirmation code has been set from a previous reservation, reset it
+let confirmationCode = document.getElementById("confirmationCode")
+confirmationCode.innerHTML = ""
+
+// function to generate a confirmation number to present to user and send to backend
+function generateConfirmationNumber() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+
+    for (let i = 0; i < 8; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        result += chars[randomIndex];
+    }
+
+    return result;
+}
 
 // Submit button logic
 let submitButton = document.getElementById("submitButton");
 submitButton.addEventListener('click', async () => {
-    let guestCountRetrieved = document.getElementById("guestCount").value;
-    let bedSelectionRetrieved = document.getElementById("roomSelection").value;
+
+    // gather data for POST request body
+    const guestCountRetrieved = document.getElementById("guestCount").value;
+    const bedSelectionRetrieved = document.getElementById("roomSelection").value;
     const dateRange = document.getElementById("dateselect").value;
     const [checkInDate, checkOutDate] = dateRange.split(" - ");
-    
+    const confirmationNumber = generateConfirmationNumber();
+
     try {
         let response = await fetch("/api/session/getSession", {
             method: 'GET'
         });
-    
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-    
+
         const sessionData = await response.json();
-        // console.log(sessionData);
 
         let preparedBody = {
             "guestCount": guestCountRetrieved,
             "userId": sessionData.userId,
             "roomId": bedSelectionRetrieved,
             "checkInDate": checkInDate,
-            "checkOutDate": checkOutDate
+            "checkOutDate": checkOutDate,
+            "confirmationNumber": confirmationNumber
         }
 
         const response2 = await fetch('/api/reservations/newRes', {
@@ -47,16 +62,30 @@ submitButton.addEventListener('click', async () => {
         const data2 = await response2.json();
         console.log(data2)
 
+        // clear input fields
+        document.getElementById('dateselect').value = '';
+        document.getElementById('guestCount').value = '';
+        document.getElementById('roomSelection').selectedIndex = 0;
+
+        // clear calendar selection
+        if (picker) {
+            picker.clear();
+        }
+
+        // reveal confirmation message and load confirmation number
+        confimrationDiv.classList.remove("hidden");
+        confirmationCode.innerHTML = `${confirmationNumber}`
         console.log(preparedBody);
     } catch (error) {
         console.error("Error fetching session data:", error);
     }
 });
 
-
+// defining picker in the global scope
+let picker;
 // Once the HTML strucutre is ready then the code can execute for the date picker
 document.addEventListener("DOMContentLoaded", function () {
-    const picker = new easepick.create({
+    picker = new easepick.create({
         element: document.getElementById('dateselect'),
         css: [
             'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
