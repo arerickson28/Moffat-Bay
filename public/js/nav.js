@@ -1,7 +1,3 @@
-{/* <div id="loggedInIconDiv">
-<h2>Logged In: <span id="userFirstName"></span></h>
-</div> */}
-
 let loggedInIconDiv = document.getElementById("loggedInIconDiv");
 let userFirstName = document.getElementById("userFirstName");
 
