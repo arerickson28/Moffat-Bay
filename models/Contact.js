@@ -1,3 +1,12 @@
+// Group 1 Capstone Database
+// Roald Medendorp
+// Austen Erickson 
+// Deena Linehan 
+// Giabella Apo 
+// Kristina Vasquez 
+// Thunder Harding 
+// Violet Gonzalez 
+
 // contactController.js
 const { Contact } = require('../models');
 const { validationResult } = require('express-validator');
