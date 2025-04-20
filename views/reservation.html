@@ -74,14 +74,16 @@
       <button id="submitButton">Submit</button>
       <div id="confirmationModal" class="modal">
         <div class="modal-content">
-          <span class="close-button" id="closeModal">&times;</span>
-          <h2>Reservation Confirmed!</h2>
-          <p>Your reservation has been successfully made.</p>
-          <p><strong>Confirmation Number:</strong> <span id="modalConfirmationNumber"></span></p>
+          <span class="close-button" id="closeModalBtn">&times;</span>
+          <h2>Reservation Summary</h2>
+          <p>Your reservation details are as follows.</p>
+          <!-- <p><strong>Confirmation Number:</strong> <span id="modalConfirmationNumber"></span></p> -->
           <p><strong>Check-in:</strong> <span id="modalCheckIn"></span></p>
           <p><strong>Check-out:</strong> <span id="modalCheckOut"></span></p>
           <p><strong>Guests:</strong> <span id="modalGuests"></span></p>
           <p><strong>Room:</strong> <span id="modalRoomType"></span></p>
+          <button id="confirmRes">Confirm</button>
+          <button id="cancelRes">Cancel</button>
         </div>
       </div>
     </div>
