@@ -1,12 +1,12 @@
 console.log("hellooooooooo");
 
 // if the confirmation div has been revealed from a previous reservation, hide it
-const confimrationDiv = document.getElementById("confirmationDiv")
-confimrationDiv.classList.add("hidden")
+// const confimrationDiv = document.getElementById("confirmationDiv")
+// confimrationDiv.classList.add("hidden")
 
 // if the confirmation code has been set from a previous reservation, reset it
-let confirmationCode = document.getElementById("confirmationCode")
-confirmationCode.innerHTML = ""
+// let confirmationCode = document.getElementById("confirmationCode")
+// confirmationCode.innerHTML = ""
 
 // function to generate a confirmation number to present to user and send to backend
 function generateConfirmationNumber() {
@@ -73,12 +73,15 @@ submitButton.addEventListener('click', async () => {
         }
 
        // show modal and set confirmation code
-        document.getElementById("confirmationCode").textContent = confirmationNumber;
+        // document.getElementById("confirmationCode").textContent = confirmationNumber;
         document.getElementById("modalConfirmationNumber").textContent = confirmationNumber;
         document.getElementById("modalCheckIn").textContent = checkInDate;
         document.getElementById("modalCheckOut").textContent = checkOutDate;
         document.getElementById("modalGuests").textContent = guestCountRetrieved;
-        document.getElementById("modalRoomType").textContent = document.getElementById("roomSelection").options[document.getElementById("roomSelection").selectedIndex].text;
+        const roomSelect = document.getElementById("roomSelection");
+        const roomOption = roomSelect.querySelector(`option[value="${bedSelectionRetrieved}"]`);
+        document.getElementById("modalRoomType").textContent = roomOption ? roomOption.textContent : "Room not found";
+
         document.getElementById("confirmationModal").style.display = "block";
         console.log(preparedBody);
     } catch (error) {
@@ -158,6 +161,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Close modal on 'X' click
-document.getElementById("closeModalBtn").addEventListener("click", () => {
+document.getElementById("closeModal").addEventListener("click", () => {
     document.getElementById("confirmationModal").style.display = "none";
   });
