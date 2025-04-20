@@ -49,9 +49,9 @@ router.get('/reservationlookup', withAuth,(req, res) => {
 
 // // Contact Page
 // will look like http://localhost:3001/contact
-// router.get('/contact', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../views/contact.html'));
-// });
+router.get('/contact', (req, res) => {
+     res.sendFile(path.join(__dirname, '../views/contact.html'));
+ });
 
 // Things to Do Page
 router.get('/todo', (req, res) => {
