@@ -44,7 +44,7 @@
 </div>
 
 
-<div id=" make-reservation-div">
+<div id="make-reservation-div">
     <div class="booking-date">
 
       <div class="date-picker">
@@ -72,9 +72,19 @@
       </select>
 
       <button id="submitButton">Submit</button>
-      <div id="confirmationDiv">
-        <h3>Reservation Confirmed!</h3>
-        <h4>Your confirmation code is: <span id="confirmationCode"></span></h4>
+      <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+          <span class="close-button" id="closeModalBtn">&times;</span>
+          <h2>Reservation Summary</h2>
+          <p>Your reservation details are as follows.</p>
+          <!-- <p><strong>Confirmation Number:</strong> <span id="modalConfirmationNumber"></span></p> -->
+          <p><strong>Check-in:</strong> <span id="modalCheckIn"></span></p>
+          <p><strong>Check-out:</strong> <span id="modalCheckOut"></span></p>
+          <p><strong>Guests:</strong> <span id="modalGuests"></span></p>
+          <p><strong>Room:</strong> <span id="modalRoomType"></span></p>
+          <button id="confirmRes">Confirm</button>
+          <button id="cancelRes">Cancel</button>
+        </div>
       </div>
     </div>
 </div>
@@ -95,9 +105,8 @@
     <a class="next" onclick="changeSlide(1)">&#10095;</a>
 
   </div>
-
-  </body>
+</div>
 
   <script src="/js/reservation.js"></script>
-
+  </body>
 </html>
