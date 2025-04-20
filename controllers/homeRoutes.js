@@ -1,3 +1,12 @@
+// Group 1 Capstone Database
+// Roald Medendorp
+// Austen Erickson 
+// Deena Linehan 
+// Giabella Apo 
+// Kristina Vasquez 
+// Thunder Harding 
+// Violet Gonzalez 
+
 // the home routes serve the webpages to the broswer
 
 const router = require("express").Router();
