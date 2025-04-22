@@ -40,14 +40,15 @@
 </head>
 
 <body>
-
     <div class="title">
-
+        <div id="loggedInIconDiv">
+            <h2>Welcome, <span id="userFirstName"></span></h2>
+        </div>
     </div>
 
     <div class="navbar">
         <a href="/">Home</a>
-        <a href="/about">About Us</a>
+        <a href="/about" style="text-decoration: underline;">About Us</a>
         <a href="/amenities">Amenities</a>
         <div id="dropdownWrapper" style="position: relative; display: inline-block;">
             <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
@@ -65,12 +66,10 @@
     <br>
 
     <div class="AboutUs-first">
-        <!-- Apply the floating effect to the About Us heading -->
         <h1 class="floating-text">About Us</h1>
     </div>
 
-    <br>
-    <br>
+    <br><br>
 
     <div class="content">
         <div class="AboutUs-second">
@@ -109,7 +108,6 @@
                 Heidi, and Pickle look forward to welcoming you and ensuring your stay is nothing short of magical. We
                 can't wait to have you as part of our family!
             </p>
-
         </div>
     </div>
 
@@ -118,7 +116,6 @@
             const floatingText = document.querySelector('.floating-text');
             const rect = floatingText.getBoundingClientRect();
 
-            // If the top of the element is within the viewport
             if (rect.top < window.innerHeight && rect.bottom >= 0) {
                 floatingText.classList.add('visible');
             } else {
@@ -138,15 +135,12 @@
 
     </script>
     
-    <br>
-    <br>
 
     <!--Added a footer to allow foor contact infromation to be listed-->
+
     <footer>
-        <p>Feel free to contact us if you have any questions or need any assitance!<br>Contact Us: (808)-222-2244
+        <p>Feel free to contact us if you have any questions or need any assistance!<br>Contact Us: (808)-222-2244
         <br>Email Us: <a href="mailto:email@noemail.com">CozyCavern@gmail.com</a></p>
     </footer>
-
 </body>
-
 </html>
