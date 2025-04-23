@@ -1,11 +1,11 @@
-// Group 1 Capstone Database
+<!-- // Group 1 Capstone Database
 // Roald Medendorp
 // Austen Erickson 
 // Deena Linehan 
 // Giabella Apo 
 // Kristina Vasquez 
 // Thunder Harding 
-// Violet Gonzalez 
+// Violet Gonzalez  -->
 
 <!-- contact.html -->
 <!DOCTYPE html>
@@ -40,18 +40,28 @@
 </style>
 
 <body>
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <a href="index">Home</a>
-        <a href="rooms">Rooms</a>
-        <a href="about">About Us</a>
-        <a href="login">Login</a>
-    </div>
+    <div class="title">
+        <div id="loggedInIconDiv">
+            <h2>Welcome, <span id="userFirstName"></span></h>
+        </div>
 
-    <!-- Contact Section -->
-<div class="title" style="margin-top: 80px;">
-    <h1 style="margin-bottom: 20px;">Contact Moffat Bay Lodge</h1>
-</div>
+    </div>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/amenities" style="text-decoration: underline;">Amenities</a>
+        <div id="dropdownWrapper" style="position: relative; display: inline-block;">
+            <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
+            <div id="dropdownMenu" class="dropdown hidden">
+                <a href="/reservation">Make Reservation</a>
+                <a href="/reservationlookup">Lookup Reservation</a>
+            </div>
+        </div>
+        <a href="/login" id="login-link">Log In</a>
+        <a href="/logout" id="logout-link">Log Out</a>
+    </div>
+    <script src="/js/nav.js"></script>
+    </div>
 
     <div class="content">
         <div class="contact-container">
