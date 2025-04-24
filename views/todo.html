@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,14 +29,17 @@
   <link rel="stylesheet" href="/style/Style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap"
+    rel="stylesheet" />
 
   <style>
     html {
       scroll-behavior: smooth;
     }
 
-    #amenities, #things-to-do {
+    #amenities,
+    #things-to-do {
       padding: 2rem 0;
     }
 
@@ -61,7 +65,7 @@
       border-radius: 8px;
       padding: 1rem 1.5rem;
       margin: 1rem 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       text-align: left;
       cursor: pointer;
       transition: transform 0.2s ease;
@@ -178,42 +182,62 @@
 <body>
   <div class="title">
     <div id="loggedInIconDiv">
-        <h2>Welcome, <span id="userFirstName"></span></h2>
+      <h2>Welcome, <span id="userFirstName"></span></h2>
     </div>
-</div>
+  </div>
 
-<div class="navbar">
+  <div class="navbar">
     <a href="/">Home</a>
     <a href="/about">About Us</a>
     <a href="/todo" style="text-decoration: underline;">Amenities</a>
     <div id="dropdownWrapper" style="position: relative; display: inline-block;">
-        <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
-        <div id="dropdownMenu" class="dropdown hidden">
-            <a href="/reservation">Make Reservation</a>
-            <a href="/reservationlookup">Lookup Reservation</a>
-        </div>
+      <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
+      <div id="dropdownMenu" class="dropdown hidden">
+        <a href="/reservation">Make Reservation</a>
+        <a href="/reservationlookup">Lookup Reservation</a>
+      </div>
     </div>
     <a href="/login" id="login-link">Log In</a>
     <a href="/logout" id="logout-link">Log Out</a>
-</div>
-<script src="/js/nav.js"></script>
+  </div>
+  <script src="/js/nav.js"></script>
+  </div>
 
   <main class="container">
 
     <!-- AMENITIES SECTION -->
     <section class="Amenities-first" id="amenities">
       <h1 class="floating-text">Amenities</h1>
-      <p class="section-intro">Whether you're here to unwind or explore, our amenities are designed to make your stay effortless and enjoyable.</p>
+      <p class="section-intro">Whether you're here to unwind or explore, our amenities are designed to make your stay
+        effortless and enjoyable.</p>
     </section>
 
     <section class="content">
       <div class="Amenities-details card-grid">
-        <div class="card" onclick="openModal('checkInOut')"><h2>Check-In & Check-Out</h2><p>Check-In: 3:00 PM • Check-Out: 11:00 AM</p></div>
-        <div class="card" onclick="openModal('breakfast')"><h2>Complimentary Breakfast</h2><p>Enjoy local pastries, fruit, and beverages from 7:00 AM to 10:00 AM.</p></div>
-        <div class="card" onclick="openModal('wifi')"><h2>Wi-Fi</h2><p>Free high-speed Wi-Fi throughout the property.</p></div>
-        <div class="card" onclick="openModal('parking')"><h2>On-Site Parking</h2><p>Complimentary parking available for all guests.</p></div>
-        <div class="card" onclick="openModal('guestLounge')"><h2>Guest Lounge</h2><p>Relax with books, games, or a hot beverage.</p></div>
-        <div class="card" onclick="openModal('bicycles')"><h2>Bicycles</h2><p>Free bike rentals to explore nearby trails and towns.</p></div>
+        <div class="card" onclick="openModal('checkInOut')">
+          <h2>Check-In & Check-Out</h2>
+          <p>Check-In: 3:00 PM • Check-Out: 11:00 AM</p>
+        </div>
+        <div class="card" onclick="openModal('breakfast')">
+          <h2>Complimentary Breakfast</h2>
+          <p>Enjoy local pastries, fruit, and beverages from 7:00 AM to 10:00 AM.</p>
+        </div>
+        <div class="card" onclick="openModal('wifi')">
+          <h2>Wi-Fi</h2>
+          <p>Free high-speed Wi-Fi throughout the property.</p>
+        </div>
+        <div class="card" onclick="openModal('parking')">
+          <h2>On-Site Parking</h2>
+          <p>Complimentary parking available for all guests.</p>
+        </div>
+        <div class="card" onclick="openModal('guestLounge')">
+          <h2>Guest Lounge</h2>
+          <p>Relax with books, games, or a hot beverage.</p>
+        </div>
+        <div class="card" onclick="openModal('bicycles')">
+          <h2>Bicycles</h2>
+          <p>Free bike rentals to explore nearby trails and towns.</p>
+        </div>
         <div class="card" onclick="openModal('contact')">
           <h2>Contact Information</h2>
           <ul>
@@ -229,21 +253,38 @@
     <!-- THINGS TO DO SECTION -->
     <section class="ToDo-first" id="things-to-do">
       <h1 class="floating-text">Things To Do in the San Juan Islands</h1>
-      <p class="section-intro">Ready to explore? The San Juan Islands are packed with natural beauty, wildlife, and quirky hidden gems.</p>
+      <p class="section-intro">Ready to explore? The San Juan Islands are packed with natural beauty, wildlife, and
+        quirky hidden gems.</p>
     </section>
 
     <section class="content">
       <div class="ToDo-details">
-        <div class="card" onclick="openModal('orcaWatching')"><h2>Watch Orcas at Lime Kiln Point</h2></div>
-        <div class="card" onclick="openModal('sculpturePark')"><h2>Sculpture Park</h2></div>
-        <div class="card" onclick="openModal('lavenderFarm')"><h2>Lavender Farm</h2></div>
-        <div class="card" onclick="openModal('whalemuseum')"><h2>The Whale Museum</h2></div>
-        <div class="card" onclick="openModal('mountconstitution')"><h2>Mount Constitution</h2></div>
-        <div class="card" onclick="openModal('krystalacres')"><h2>Krystal Acres Alpacas</h2></div>
-        <div class="card" onclick="openModal('sharkreef')"><h2>Shark Reef Sanctuary</h2></div>
-        <div class="card" onclick="openModal('juddcove')"><h2>Judd Cove Preserve</h2></div>
-      </div>
-      <div class="back-to-top"><a href="#">Back to Top</a></div>
+        <div class="card" onclick="openModal('orcaWatching')">
+          <h2>Watch Orcas at Lime Kiln Point</h2>
+        </div>
+        <div class="card" onclick="openModal('sculpturePark')">
+          <h2>Sculpture Park</h2>
+        </div>
+        <div class="card" onclick="openModal('lavenderFarm')">
+          <h2>Lavender Farm</h2>
+        </div>
+        <div class="card" onclick="openModal('whalemuseum')">
+          <h2>The Whale Museum</h2>
+        </div>
+        <div class="card" onclick="openModal('mountconstitution')">
+          <h2>Mount Constitution</h2>
+        </div>
+        <div class="card" onclick="openModal('krystalacres')">
+          <h2>Krystal Acres Alpacas</h2>
+        </div>
+        <div class="card" onclick="openModal('sharkreef')">
+          <h2>Shark Reef Sanctuary</h2>
+        </div>
+        <div class="card" onclick="openModal('juddcove')">
+          <h2>Judd Cove Preserve</h2>
+        </div>
+
+        <div class="back-to-top"><a href="#">Back to Top</a></div>
     </section>
 
   </main>
@@ -252,7 +293,9 @@
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
-      <div class="modal-header"><h2 id="modal-title"></h2></div>
+      <div class="modal-header">
+        <h2 id="modal-title"></h2>
+      </div>
       <div class="modal-body" id="modal-body"></div>
     </div>
   </div>
@@ -351,5 +394,8 @@
       });
     });
   </script>
+
+
 </body>
+
 </html>
