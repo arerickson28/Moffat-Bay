@@ -1,0 +1,68 @@
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #819186;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.button {
+    background-color: #ECE8CF;
+    color: black;
+    border-color: #819186;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#resDetails {
+    margin-top: 30px;
+    display: none;
+}
+
+.info-group h3 {
+    margin-top: 0;
+    color: #7f8c8d;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.info-group p {
+    margin: 5px 0;
+    font-size: 1.1rem;
+}
+
+.collapsible {
+    cursor: pointer;
+    padding: 1rem;
+    background: #e9ecef;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+.collapsible-content {
+    padding: 1rem;
+    display: none;
+}
+
+.feature-section, .lookup-res {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.collapsible {
+    cursor: pointer;
+    padding: 1rem;
+    background: #e9ecef;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+.collapsible-content {
+    padding: 1rem;
+    display: none;
+}
