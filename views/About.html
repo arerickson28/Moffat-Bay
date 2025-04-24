@@ -7,6 +7,9 @@
     <meta name="description" content="Group 1 Capstone" />
     <meta name="keywords" content="CSS, HTML, Group 1, Capstone" />
     <meta name="robots" content="nofollow" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="/style/style.css">
 
@@ -19,42 +22,54 @@
 
     <style>
         .floating-text {
-            position: relative;
-            top: 100px;
-            /* Start below its normal position */
             opacity: 0;
             /* Make it invisible at the start */
-            transition: top 0.2s ease-out, opacity 0.2s ease-out;
+            transition: top 0.3s ease-out, opacity 0.2s ease-out;
             /* Smooth transition for movement and fade */
+            transform: translateY(20px);
+            /*starts 20px below the final position */
         }
 
         .floating-text.visible {
-            top: 0;
-            /* Move it to its final position (float up) */
             opacity: 1;
             /* Make it visible */
+            transform: translateY(0);
+            /* final position */
         }
     </style>
 </head>
 
 <body>
-
     <div class="title">
-        <div class="navbar">
-            <a href="/">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/registration">Register</a>
-            <a href="/login" id="login-link">Log In</a>
-            <a href="/logout" id="logout-link">Log Out</a>
-            <!-- <a href="contact-us.html">Contact Us</a> -->
+        <div id="loggedInIconDiv">
+            <h2>Welcome, <span id="userFirstName"></span></h2>
         </div>
-        <script src="/js/nav.js"></script>
     </div>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/about" style="text-decoration: underline;">About Us</a>
+        <a href="/todo">Amenities</a>
+        <div id="dropdownWrapper" style="position: relative; display: inline-block;">
+            <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
+            <div id="dropdownMenu" class="dropdown hidden">
+                <a href="/reservation">Make Reservation</a>
+                <a href="/reservationlookup">Lookup Reservation</a>
+            </div>
+        </div>
+        <a href="/login" id="login-link">Log In</a>
+        <a href="/logout" id="logout-link">Log Out</a>
+    </div>
+    <script src="/js/nav.js"></script>
+    <hr width="30%">
+
+    <br>
 
     <div class="AboutUs-first">
-        <!-- Apply the floating effect to the About Us heading -->
         <h1 class="floating-text">About Us</h1>
     </div>
+
+    <br><br>
 
     <div class="content">
         <div class="AboutUs-second">
@@ -77,7 +92,7 @@
             <div class="AboutUs-IMG2">
                 <img src="/images/pickle.jpg" alt="Meet Pickle" height="475px" width="450px">
             </div>
-            <p>Our beloved border collie, Pickle, is the unofficial mascot of the Cozy Cavern. With his playful spirit
+            <p>Our beloved Border Collie, Pickle, is the unofficial mascot of the Cozy Cavern. With his playful spirit
                 and friendly demeanor, Pickle has greeted countless guests over the years. Whether he's lounging in the
                 garden or running along the beach, Pickle brings a special charm to the Cozy Cavern experience. Guests
                 often share fond stories of their encounters with Pickle — and some have even become lifelong friends
@@ -93,7 +108,6 @@
                 Heidi, and Pickle look forward to welcoming you and ensuring your stay is nothing short of magical. We
                 can't wait to have you as part of our family!
             </p>
-
         </div>
     </div>
 
@@ -102,15 +116,34 @@
             const floatingText = document.querySelector('.floating-text');
             const rect = floatingText.getBoundingClientRect();
 
-            // If the top of the element is within the viewport
             if (rect.top < window.innerHeight && rect.bottom >= 0) {
                 floatingText.classList.add('visible');
             } else {
                 floatingText.classList.remove('visible');
             }
         });
+        // Once the HTML strucutre is ready then the code can execute
+        document.addEventListener("DOMContentLoaded", function () {
+            const floatingText = document.querySelector('.floating-text');
+
+            // add a small delay before the text actually shows
+            setTimeout(function () {
+                // The visable clas is to make the text appear and triggers the css notated
+                floatingText.classList.add('visible');
+            }, 100);
+        });
+
     </script>
+    
 
+    <!--Added a footer to allow for contact infromation to be listed-->
+    <footer>
+        <p>
+            Feel free to <a href="contact">contact us</a> if you have any questions or need any assistance!<br>
+            Call Us: (808)-222-2244<br>
+            Email Us: <a href="mailto:CozyCavern@gmail.com">CozyCavern@gmail.com</a>
+        </p>
+    </footer>
+    
 </body>
-
 </html>

@@ -1,131 +1,215 @@
-// Mock database of rooms
-const rooms = [
-    {
-        id: 1,
-        name: "Ocean View Suite",
-        price: 249,
-        image: "/images/sea-bedroom.jpg",
-        description: "Spacious suite with panoramic ocean views and private balcony",
-        capacity: 2,
-        amenities: ["King bed", "Ocean view", "Private bathroom", "Breakfast included"]
-    },
-    {
-        id: 2,
-        name: "Garden Retreat",
-        price: 189,
-        image: "/images/garden-room.jpg",
-        description: "Cozy room overlooking our private flower garden",
-        capacity: 2,
-        amenities: ["Queen bed", "Garden view", "Private bathroom", "Breakfast included"]
-    },
-    {
-        id: 3,
-        name: "Lighthouse Suite",
-        price: 349,
-        image: "/images/lighthouse-suite.jpg",
-        description: "Unique suite in historic lighthouse with 360° views",
-        capacity: 4,
-        amenities: ["Two queen beds", "Private terrace", "Jacuzzi", "Champagne welcome"]
-    }
-];
+console.log("hellooooooooo");
 
-// Initialize date picker
+let guestCountRetrieved;
+let bedSelectionRetrieved;
+let dateRange;
+let checkInDate;
+let checkOutDate;
+let confirmationNumber;
+
+let confirmResBtn = document.getElementById("confirmRes");
+
+function repopWithConf() {
+    let modalContent = document.getElementsByClassName("modal-content") [0];
+    const keepId = "closeModalBtn";
+    for (let i = modalContent.children.length -1; i >= 0; i--) {
+        const child = modalContent.children[i];
+        if (child.id !== keepId) {
+            modalContent.removeChild(child);
+        }
+    }
+    let resCreatedMsg = document.createElement("h2")
+    resCreatedMsg.innerHTML = "Reservation Created!";
+
+    let confNumber = document.createElement("p")
+    confNumber.innerHTML = `Your confirmation number is: ${confirmationNumber}`
+
+    modalContent.appendChild(resCreatedMsg);
+    modalContent.appendChild(confNumber)
+}
+
+// if the confirmation div has been revealed from a previous reservation, hide it
+// const confimrationDiv = document.getElementById("confirmationDiv")
+// confimrationDiv.classList.add("hidden")
+
+// if the confirmation code has been set from a previous reservation, reset it
+// let confirmationCode = document.getElementById("confirmationCode")
+// confirmationCode.innerHTML = ""
+
+// function to generate a confirmation number to present to user and send to backend
+function generateConfirmationNumber() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+
+    for (let i = 0; i < 8; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        result += chars[randomIndex];
+    }
+
+    return result;
+}
+
+// Submit button logic
+let submitButton = document.getElementById("submitButton");
+submitButton.addEventListener('click', async () => {
+
+    guestCountRetrieved = document.getElementById("guestCount").value;
+    bedSelectionRetrieved = document.getElementById("roomSelection").value;
+    dateRange = document.getElementById("dateselect").value;
+    [checkInDate, checkOutDate] = dateRange.split(" - ");
+    confirmationNumber = generateConfirmationNumber();
+
+       // show modal and set confirmation code
+        // document.getElementById("confirmationCode").textContent = confirmationNumber;
+        // document.getElementById("modalConfirmationNumber").textContent = confirmationNumber;
+        document.getElementById("modalCheckIn").textContent = checkInDate;
+        document.getElementById("modalCheckOut").textContent = checkOutDate;
+        document.getElementById("modalGuests").textContent = guestCountRetrieved;
+        const roomSelect = document.getElementById("roomSelection");
+        const roomOption = roomSelect.querySelector(`option[value="${bedSelectionRetrieved}"]`);
+        document.getElementById("modalRoomType").textContent = roomOption ? roomOption.textContent : "Room not found";
+
+        document.getElementById("confirmationModal").style.display = "block";
+});
+
+
+// defining picker in the global scope
 let picker;
-document.addEventListener("DOMContentLoaded", () => {
+// Once the HTML strucutre is ready then the code can execute for the date picker
+document.addEventListener("DOMContentLoaded", function () {
     picker = new easepick.create({
         element: document.getElementById('dateselect'),
-        css: ['https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css'],
-        plugins: ['RangePlugin', 'LockPlugin'],
+        css: [
+            'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
+        ],
+        setup(picker) {
+            picker.on('select', (e) => {
+                const { view, date, target } = e.detail;
+            });
+        },
         RangePlugin: {
             tooltip: true,
         },
+        AmpPlugin: {
+            dropdown: {
+                months: true,
+                years: true,
+                minYear: new Date().getFullYear(),
+            },
+        },
         LockPlugin: {
             minDate: new Date(),
-        }
+        },
+        plugins: ['RangePlugin', 'LockPlugin', 'AmpPlugin'],
+        grid: 2,
+        calanders: 2
     });
 });
 
-async function checkAvailability() {
-    const dates = picker.getDatePicker();
-    if (!dates || dates.length < 2) {
-        alert("Please select both check-in and check-out dates");
-        return;
+// Once the HTML strucutre is ready then the code can execute the slide
+document.addEventListener("DOMContentLoaded", function () {
+
+    let slides = document.querySelectorAll('.slides img');
+    if (slides.length > 0) {
+        slides[0].classList.add('active');
     }
 
-    showLoading(true);
+    window.slideIndex = 0
 
-    // Simulate API call
-    setTimeout(() => {
-        showLoading(false);
-        displayRooms(rooms);
-    }, 1000);
-}
+    // fucntion to change slides - must be in global scope
+    window.changeSlide = function (n) {
+        let slides = document.querySelectorAll('.slides img');
 
-function displayRooms(availableRooms) {
-    const container = document.getElementById('roomsContainer');
+        if (slides.length === 0) return;
 
-    if (availableRooms.length === 0) {
-        container.innerHTML = `
-            <div class="availability-message">
-                No rooms available for selected dates. Please try different dates.
-            </div>
-        `;
-        return;
-    }
+        window.slideIndex += n;
 
-    container.innerHTML = `
-        <div class="room-grid">
-            ${availableRooms.map(room => `
-                <div class="room-card">
-                    <img src="${room.image}" alt="${room.name}" class="room-image">
-                    <div class="room-details">
-                        <h3 class="room-title">${room.name}</h3>
-                        <p>${room.description}</p>
-                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                            ${room.amenities.map(a => `<li>✔️ ${a}</li>`).join('')}
-                        </ul>
-                        <p class="room-price">$${room.price}/night</p>
-                        <button class="book-btn" onclick="startBooking(${room.id})">
-                            Book Now
-                        </button>
-                    </div>
-                </div>
-            `).join('')}
-        </div>
-    `;
-}
+        // Handles boundaries 
+        if (window.slideIndex >= slides.length) { window.slideIndex = 0 }
+        if (window.slideIndex < 0) { window.slideIndex = slides.length - 1 }
 
-function showLoading(show) {
-    document.getElementById('loadingSpinner').style.display = show ? 'block' : 'none';
-}
+        // Hide the slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
 
-function startBooking(roomId) {
-    const selectedRoom = rooms.find(r => r.id === roomId);
-    const dates = picker.getDatePicker();
+        // Show the current slide
+        slides[window.slideIndex].classList.add('active');
+    };
 
-    if (!dates || dates.length < 2) {
-        alert("Please select dates first");
-        return;
-    }
+    // Autoplays the slideshow in a 5 sec. period
+    setInterval(function () {
+        changeSlide(1);
+    }, 5000);
+});
 
-    const checkIn = dates[0].toLocaleDateString();
-    const checkOut = dates[1].toLocaleDateString();
+function closeModal() {
+    document.getElementById("confirmationModal").style.display = "none";
+    location.reload();
+  }
 
-    const confirmation = confirm(
-        `Confirm booking:\n
-        Room: ${selectedRoom.name}\n
-        Check-in: ${checkIn}\n
-        Check-out: ${checkOut}\n
-        Total: $${calculateTotal(selectedRoom.price, dates)}`
-    );
+// Close modal on 'X' click
+document.getElementById("closeModalBtn").addEventListener("click", closeModal);
 
-    if (confirmation) {
-        // Here you would typically redirect to a payment page
-        alert("Booking confirmed! Redirecting to payment...");
-    }
-}
+  document.getElementById("cancelRes").addEventListener("click", closeModal);
 
-function calculateTotal(pricePerNight, dates) {
-    const nights = Math.ceil((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
-    return pricePerNight * nights;
-}
+ async function sendResToBackend() {
+        // // gather data for POST request body
+        // guestCountRetrieved = document.getElementById("guestCount").value;
+        // bedSelectionRetrieved = document.getElementById("roomSelection").value;
+        // dateRange = document.getElementById("dateselect").value;
+        // [checkInDate, checkOutDate] = dateRange.split(" - ");
+        // confirmationNumber = generateConfirmationNumber();
+    
+        try {
+            let response = await fetch("/api/session/getSession", {
+                method: 'GET'
+            });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
+            const sessionData = await response.json();
+            console.log(sessionData)
+    
+            let preparedBody = {
+                "guestCount": guestCountRetrieved,
+                "userId": sessionData.userId,
+                "roomId": bedSelectionRetrieved,
+                "checkInDate": checkInDate,
+                "checkOutDate": checkOutDate,
+                "confirmationNumber": confirmationNumber
+            }
+
+            console.log(preparedBody)
+    
+            const response2 = await fetch('/api/reservations/newRes', {
+                method: 'POST',
+                body: JSON.stringify(preparedBody),
+                headers: { 'Content-Type': 'application/json' }
+            })
+    
+            if (!response2.ok) throw new Error('Second fetch failed');
+            const data2 = await response2.json();
+            console.log(data2)
+    
+            // clear input fields
+            document.getElementById('dateselect').value = '';
+            document.getElementById('guestCount').value = '';
+            document.getElementById('roomSelection').selectedIndex = 0;
+    
+            // clear calendar selection
+            if (picker) {
+                picker.clear();
+            }
+        } catch (error) {
+            console.error("Error fetching session data:", error);
+        }
+  }
+
+  confirmResBtn.addEventListener('click', () => {
+
+  sendResToBackend()
+  repopWithConf()
+})

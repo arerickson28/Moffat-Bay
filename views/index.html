@@ -1,3 +1,12 @@
+<!-- // Group 1 Capstone Database
+// Roald Medendorp
+// Austen Erickson 
+// Deena Linehan 
+// Giabella Apo 
+// Kristina Vasquez 
+// Thunder Harding 
+// Violet Gonzalez  -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,36 +51,29 @@
 
 
     <div class="title">
+        <div id="loggedInIconDiv">
+            <h2>Welcome, <span id="userFirstName"></span></h>
+        </div>
 
     </div>
 
 
     <div class="navbar">
-        <a href="/">Home</a>
+        <a href="/" style="text-decoration: underline;">Home</a>
         <a href="/about">About Us</a>
-        <a href="/registration">Register</a>
+        <a href="/todo">Amenities</a>
+        <div id="dropdownWrapper" style="position: relative; display: inline-block;">
+            <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
+            <div id="dropdownMenu" class="dropdown hidden">
+                <a href="/reservation">Make Reservation</a>
+                <a href="/reservationlookup">Lookup Reservation</a>
+            </div>
+        </div>
         <a href="/login" id="login-link">Log In</a>
         <a href="/logout" id="logout-link">Log Out</a>
-        <a href="/reservation">Reservations</a>
-        <a href="/reservationlookup">Reservation Summary</a>
-
-        <!-- <a href="contact-us.html">Contact Us</a> -->
     </div>
     <script src="/js/nav.js"></script>
     <hr width="30%"> <!-- Add a bottom line for seperation of date and person input-->
-
-    <!-- Need the basic HTML for the date picker-->
-    <div class="booking-date">
-        <div class="date-picker">
-            <div class="date-field">
-                <label for="check-in-out">Check-in → Check-out</label>
-                <input id="dateselect" type="text" placeholder="Select your stay dates" readonly>
-            </div>
-        </div>
-
-        <button type="button" class="search-button">Search</button>
-    </div>
-
 
     <div class="content">
         <div class="Home-first">
@@ -116,6 +118,16 @@
             </div>
         </div>
     </div>
+
+        <!--Added a footer to allow for contact infromation to be listed-->
+        <footer>
+            <p>
+                Feel free to <a href="contact">contact us</a> if you have any questions or need any assistance!<br>
+                Call Us: (808)-222-2244<br>
+                Email Us: <a href="mailto:CozyCavern@gmail.com">CozyCavern@gmail.com</a>
+            </p>
+        </footer>
+
 </body>
 <script src="/js/index.js"></script>
 

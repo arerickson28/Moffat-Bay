@@ -20,36 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100);
 });
 
-// Once the HTML strucutre is ready then the code can execute for the date picker
-document.addEventListener("DOMContentLoaded", function () {
-    const picker = new easepick.create({
-        element: document.getElementById('dateselect'),
-        css: [
-            'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
-        ],
-        setup(picker) {
-            picker.on('select', (e) => {
-                const { view, date, target } = e.detail;
-            });
-        },
-        RangePlugin: {
-            tooltip: true,
-        },
-        AmpPlugin: {
-            dropdown: {
-                months: true,
-                years: true,
-                minYear: new Date().getFullYear(),
-            },
-        },
-        LockPlugin: {
-            minDate: new Date(),
-        },
-        plugins: ['RangePlugin', 'LockPlugin', 'AmpPlugin'],
-        grid: 2,
-        calanders: 2
-    });
-});
 
 // Once the HTML strucutre is ready then the code can execute the slide
 document.addEventListener("DOMContentLoaded", function () {

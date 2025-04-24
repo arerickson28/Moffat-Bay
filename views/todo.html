@@ -3,6 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Group 1 Capstone">
+  <meta name="keywords" content="CSS, HTML, Group 1, Capstone">
+  <meta name="robots" content="nofollow">
+
+  <title>Amenities</title>
+
+  <link rel="stylesheet" href="./../public/style/Style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="authors"
+    content="Roald Medendorp, Austen Erickson, Deena Linehan, Giabella Apo, Kristina Vasquez, Thunder Harding, Violet Gonzalez" />
   <meta name="description" content="Group 1 Capstone" />
   <title>Amenities & Things To Do</title>
   <link rel="stylesheet" href="/style/Style.css" />
@@ -157,18 +177,26 @@
 
 <body>
   <div class="title">
-    <div class="navbar">
-      <a href="/">Home</a>
-      <a href="/about">About Us</a>
-      <a href="/registration">Register</a>
-      <a href="/login" id="login-link">Log In</a>
-      <a href="/logout" id="logout-link">Log Out</a>
-      <a href="/reservation">Reservations</a>
-      <a href="/reservationlookup">Reservation Summary</a>
-      <a href="#things-to-do">Things to Do</a>
-      <a href="#amenities">Amenities</a>
+    <div id="loggedInIconDiv">
+        <h2>Welcome, <span id="userFirstName"></span></h2>
     </div>
-  </div>
+</div>
+
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/about">About Us</a>
+    <a href="/todo" style="text-decoration: underline;">Amenities</a>
+    <div id="dropdownWrapper" style="position: relative; display: inline-block;">
+        <a href="#" onclick="toggleDropdown(event)" id="reservation-link">Reservations</a>
+        <div id="dropdownMenu" class="dropdown hidden">
+            <a href="/reservation">Make Reservation</a>
+            <a href="/reservationlookup">Lookup Reservation</a>
+        </div>
+    </div>
+    <a href="/login" id="login-link">Log In</a>
+    <a href="/logout" id="logout-link">Log Out</a>
+</div>
+<script src="/js/nav.js"></script>
 
   <main class="container">
 
@@ -323,6 +351,5 @@
       });
     });
   </script>
-
 </body>
 </html>
