@@ -43,91 +43,94 @@
 
     <script src="/js/nav.js"></script>
 
-    <!-- Creates a conainer for look-up res portion -->
-    <div class="lookup-res">
-        <br>
-        <!-- Allows for same floating animation -->
-        <div class="floating-text">
-            <h1>Lookup Reservation</h1>
-        </div>
-        <br>
-        <br>
-        <h2 style="text-align: center;">Cozy Cavern Inn Reservation</h2>
-        <br>
-        <!-- Collects the information from the guest -->
-        <div class="form-group">
-            <label for="confNumber">Confirmation Number</label>
-            <input type="text" id="confNumber" required="required">
+    <!-- Match the same layout as previous pages -->
+    <div class="content">
+        <div class="lookup-res">
             <br>
-            <br>
-            <label for="lastName">Last Name (as stated on the reservation)</label>
-            <input type="text" id="lastName" required="required">
-            <br>
-            <br>
-            <label for="checkIn">Check-in Date </label>
-            <input type="date" id="checkIn" required="required">
-        </div>
+            <!-- Allows for same floating animation -->
+            <div class="floating-text">
+                <h1 style="text-align: center;">Loookup a Reservation </h1>
+                <br>
+                <p class="centered-text">Cozy Cavern Inn Reservation</p>
+                <br>
+                <br>
+                <br>
+            </div>
+            <!-- Collects the information from the guest -->
+            <div class="form-group">
+                <label for="confNumber">Confirmation Number</label>
+                <input type="text" id="confNumber" required="required">
+                <br>
+                <br>
+                <label for="lastName">Last Name (as stated on the reservation)</label>
+                <input type="text" id="lastName" required="required">
+                <br>
+                <br>
+                <label for="checkIn">Check-in Date </label>
+                <input type="date" id="checkIn" required="required">
+                <br>
+                <br>
+                <button class="button" id="searchRes">Find your reservation</button>
+                <div class="lookup-error" id="errorMessage">
+                    Reservation could not be found
+                </div>
+            </div>
     
-
-        <br>
-        <br>
-
-        <button class="button" id="searchRes">Find your reservation</button>
-        <br>
-        <div class="lookup-error" id="errorMessage">
-            Reservation could not be found
-        </div>
-
-        <br>
-        <!-- Showing the reservation info-->
-        <div id="resDetails">
-            <div class="res-card">
-                <h2 class="res-title">Your reservation</h2>
-                <span class="confirmation" id="confDisplay"></span>
+            <br>
+            <!-- Showing the reservation info-->
+            <div id="resDetails">
+                <div class="res-card">
+                    <h2 class="res-title">Your reservation</h2>
+                    <span class="confirmation" id="confDisplay"></span>
+                </div>
             </div>
-        </div>
-        <br>
-        <!-- Guest count -->
-        <div class="res-info">
-            <div class="info-group">
-                <h3><span id="guestCount"></span> Guest</h3>
-                <p id="guestName"></p>
-            </div>
-        <br>
-        <!-- Res info -->
-         <div class="info-group">
-            <h3>Stay Information</h3>
-            <p id="roomType"></p>
-            <p id="stayDates"></p>
-            <p id="totalAmount"></p>
-         </div>
+            <br>
+            <!-- Guest count -->
+            <div class="res-info">
+                <div class="info-group">
+                    <h3><span id="guestCount"></span></h3>
+                    <p id="guestName"></p>
+                </div>
+            <br>
+            <!-- Res info -->
+             <div class="info-group">
+                <h3><span id="res-heading"></span></h3>
+                <p id="roomType"></p>
+                <p id="stayDates"></p>
+                <p id="totalAmount"></p>
+             </div>
 
-        </div>
+            <br>
+            <br>
 
-        <!-- New Features Section -->
-        <div class="feature-section">
-            <h2>Additional Information</h2>
-
-            <!-- Check-in Instructions -->
-            <div class="collapsible" onclick="toggleCollapsible('checkin')">
-                📅 Check-in Instructions
             </div>
-            <div id="checkin" class="collapsible-content">
-                <p>Check-in time: 3:00 PM - 7:00 PM</p>
-                <p>Late arrival instructions: Call +1 (555) 123-4567</p>
-                <p>Key pickup: Front desk</p>
-            </div>
-
-            <!-- Cancellation Policy -->
-            <div class="collapsible" onclick="toggleCollapsible('cancellation')">
-                ❗ Cancellation Policy
-            </div>
-            <div id="cancellation" class="collapsible-content">
-                <p>Free cancellation up to 72 hours before check-in</p>
-                <p>50% charge for cancellations within 72 hours</p>
+    
+            <!-- New Features Section -->
+            <div class="feature-section">
+                <h2>Additional Information</h2>
+    
+                <!-- Check-in Instructions -->
+                <div class="collapsible" onclick="toggleCollapsible('checkin')">
+                    📅 Check-in Instructions
+                </div>
+                <div id="checkin" class="collapsible-content">
+                    <p>Check-in time: 3:00 PM - 7:00 PM</p>
+                    <p>Late arrival instructions: Call +1 (555) 123-4567</p>
+                    <p>Key pickup: Front desk</p>
+                </div>
+    
+                <!-- Cancellation Policy -->
+                <div class="collapsible" onclick="toggleCollapsible('cancellation')">
+                    ❗ Cancellation Policy
+                </div>
+                <div id="cancellation" class="collapsible-content">
+                    <p>Free cancellation up to 72 hours before check-in</p>
+                    <p>50% charge for cancellations within 72 hours</p>
+                </div>
             </div>
         </div>
     </div>
+    
 
     <script>
         window.addEventListener("scroll", function () {
