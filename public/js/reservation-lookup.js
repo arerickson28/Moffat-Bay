@@ -183,6 +183,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('No room object found');
             }
             
+            //Allow for the heading to be displayed when the other detilas are found/displayed
+            document.getElementById('res-heading').textContent = 'Stay Information';
             // Display room type and price per night
             if (pricePerNight) {
                 document.getElementById('roomType').textContent = `${roomType} - $${parseFloat(pricePerNight).toFixed(2)} per night`;
@@ -214,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Update guest count
             if (reservation.guest_count) {
-                document.getElementById('guestCount').textContent = reservation.guest_count;
+                document.getElementById('guestCount').textContent = reservation.guest_count + ' Guest';
             } else {
                 document.getElementById('guestCount').textContent = '?';
             }
