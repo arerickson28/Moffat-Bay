@@ -67,9 +67,5 @@ router.get('/todo', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/todo.html'));
   });
   
-  // Amenities Page
-  router.get('/amenities', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/Amenities.html'));
-  });
 
 module.exports = router;
