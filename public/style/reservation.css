@@ -188,3 +188,15 @@
     margin: 10px 0;
     color: #555;
   }
+
+  #make-reservation-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#check-in-out-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

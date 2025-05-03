@@ -12,7 +12,8 @@
 
   <title>Amenities</title>
 
-  <link rel="stylesheet" href="./../public/style/Style.css">
+  <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="/style/todo.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,150 +34,6 @@
     href="https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Gowun+Batang:wght@400;700&display=swap"
     rel="stylesheet" />
 
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    #amenities,
-    #things-to-do {
-      padding: 2rem 0;
-    }
-
-    #amenities {
-      background-color: #f9f9f9;
-    }
-
-    #things-to-do {
-      background-color: #ffffff;
-    }
-
-    .section-intro {
-      max-width: 700px;
-      margin: 1rem auto 2rem;
-      text-align: center;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #444;
-    }
-
-    .card {
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 1rem 1.5rem;
-      margin: 1rem 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      text-align: left;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .card-grid .card {
-      flex: 1 1 300px;
-      max-width: 32%;
-      box-sizing: border-box;
-    }
-
-    .ToDo-details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-
-    .ToDo-details .card {
-      flex: 1 1 300px;
-      max-width: 32%;
-      box-sizing: border-box;
-    }
-
-    .external-link {
-      display: inline-block;
-      margin-top: 0.5rem;
-      font-weight: bold;
-      color: #0077cc;
-      text-decoration: underline;
-      transition: color 0.2s ease;
-    }
-
-    .external-link:hover {
-      color: #004d99;
-    }
-
-    .back-to-top {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .back-to-top a {
-      font-weight: bold;
-      color: #0077cc;
-      text-decoration: underline;
-      transition: color 0.2s ease;
-    }
-
-    .back-to-top a:hover {
-      color: #004d99;
-    }
-
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-      padding-top: 60px;
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: 5% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 800px;
-      border-radius: 10px;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .modal-header h2 {
-      margin: 0;
-    }
-
-    .modal-body {
-      padding: 10px;
-    }
-  </style>
 </head>
 
 <body>
@@ -212,43 +69,32 @@
         effortless and enjoyable.</p>
     </section>
 
+
     <section class="content">
-      <div class="Amenities-details card-grid">
-        <div class="card" onclick="openModal('checkInOut')">
-          <h2>Check-In & Check-Out</h2>
-          <p>Check-In: 3:00 PM • Check-Out: 11:00 AM</p>
-        </div>
-        <div class="card" onclick="openModal('breakfast')">
+      <div class="Amenities-details">
+
           <h2>Complimentary Breakfast</h2>
-          <p>Enjoy local pastries, fruit, and beverages from 7:00 AM to 10:00 AM.</p>
-        </div>
-        <div class="card" onclick="openModal('wifi')">
+          <p>Each morning, enjoy a complimentary breakfast served from 7:00 AM to 10:00 AM in our cozy dining
+              area. Savor fresh local pastries, seasonal fruit, and a selection of beverages to start your day the
+              right way!</p>
+
           <h2>Wi-Fi</h2>
-          <p>Free high-speed Wi-Fi throughout the property.</p>
-        </div>
-        <div class="card" onclick="openModal('parking')">
+          <p>Stay connected during your stay with complimentary high-speed Wi-Fi available throughout the hotel.
+          </p>
+
           <h2>On-Site Parking</h2>
-          <p>Complimentary parking available for all guests.</p>
-        </div>
-        <div class="card" onclick="openModal('guestLounge')">
+          <p>Free on-site parking is available for all guests during your stay.</p>
+
           <h2>Guest Lounge</h2>
-          <p>Relax with books, games, or a hot beverage.</p>
-        </div>
-        <div class="card" onclick="openModal('bicycles')">
+          <p>Relax and unwind in our comfortable guest lounge, where you can enjoy reading, games, or simply relax
+              with a warm beverage.</p>
+
           <h2>Bicycles</h2>
-          <p>Free bike rentals to explore nearby trails and towns.</p>
-        </div>
-        <div class="card" onclick="openModal('contact')">
-          <h2>Contact Information</h2>
-          <ul>
-            <li>Phone: [Hotel Phone Number]</li>
-            <li>Email: [Hotel Email Address]</li>
-            <li>Address: [Hotel Address]</li>
-          </ul>
-        </div>
+          <p>We offer complimentary bicycle rentals to explore the beautiful surroundings of the San Juan Islands.
+          </p>
       </div>
-      <div class="back-to-top"><a href="#">Back to Top</a></div>
-    </section>
+  </section>
+
 
     <!-- THINGS TO DO SECTION -->
     <section class="ToDo-first" id="things-to-do">
@@ -284,7 +130,7 @@
           <h2>Judd Cove Preserve</h2>
         </div>
 
-        <div class="back-to-top"><a href="#">Back to Top</a></div>
+  
     </section>
 
   </main>
@@ -293,109 +139,40 @@
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
-      <div class="modal-header">
-        <h2 id="modal-title"></h2>
+      <div>
+          <h2 id="modal-title"></h2>
+          <hr>
+        <div  id="modal-body"></div>
       </div>
-      <div class="modal-body" id="modal-body"></div>
+      <!-- <img src="/images/dinning-room.jpg" alt="activity-image" width="500"> -->
+      <div class="room-slideshow">
+        <div class="slide-container">
+          <div id="slideshow-content" class="slides">
+         
+          
+          </div>
+      
+          <!-- Our left arrow-->
+          <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+          <!-- Our right arrow-->
+          <a class="next" onclick="changeSlide(1)">&#10095;</a>
+      
+        </div>
+      </div>
     </div>
   </div>
 
-  <script>
-    function openModal(section) {
-      let title = '';
-      let bodyContent = '';
+  <footer>
+    <p>
+        Feel free to <a href="contact">contact us</a> if you have any questions or need any assistance!<br>
+        Call Us: (808)-222-2244<br>
+        Email Us: <a href="mailto:CozyCavern@gmail.com">CozyCavern@gmail.com</a>
+    </p>
+</footer>
 
-      switch (section) {
-        case 'checkInOut':
-          title = 'Check-In & Check-Out';
-          bodyContent = '<p>Check-In: 3:00 PM • Check-Out: 11:00 AM</p>';
-          break;
-        case 'breakfast':
-          title = 'Complimentary Breakfast';
-          bodyContent = '<p>Enjoy local pastries, fruit, and beverages from 7:00 AM to 10:00 AM.</p>';
-          break;
-        case 'wifi':
-          title = 'Wi-Fi';
-          bodyContent = '<p>Free high-speed Wi-Fi throughout the property.</p>';
-          break;
-        case 'parking':
-          title = 'On-Site Parking';
-          bodyContent = '<p>Complimentary parking available for all guests.</p>';
-          break;
-        case 'guestLounge':
-          title = 'Guest Lounge';
-          bodyContent = '<p>Relax with books, games, or a hot beverage.</p>';
-          break;
-        case 'bicycles':
-          title = 'Bicycles';
-          bodyContent = '<p>Free bike rentals to explore nearby trails and towns.</p>';
-          break;
-        case 'contact':
-          title = 'Contact Information';
-          bodyContent = `
-            <ul>
-              <li>Phone: [Hotel Phone Number]</li>
-              <li>Email: [Hotel Email Address]</li>
-              <li>Address: [Hotel Address]</li>
-            </ul>`;
-          break;
-        case 'orcaWatching':
-          title = 'Watch Orcas at Lime Kiln Point';
-          bodyContent = '<p>Lime Kiln is the best shore-based whale-watching spot in the country.</p>';
-          break;
-        case 'sculpturePark':
-          title = 'Sculpture Park';
-          bodyContent = '<p>Explore art and nature together in this 20-acre open-air gallery.</p>';
-          break;
-        case 'lavenderFarm':
-          title = 'Lavender Farm';
-          bodyContent = '<p>Enjoy stunning fields of lavender and handcrafted goods.</p>';
-          break;
-        case 'whalemuseum':
-          title = 'The Whale Museum';
-          bodyContent = '<p>Learn about marine life and local orca populations in this educational museum.</p>';
-          break;
-        case 'mountconstitution':
-          title = 'Mount Constitution';
-          bodyContent = '<p>The highest point in the San Juans — epic views await!</p>';
-          break;
-        case 'krystalacres':
-          title = 'Krystal Acres Alpacas';
-          bodyContent = '<p>Meet friendly alpacas and shop for alpaca goods.</p>';
-          break;
-        case 'sharkreef':
-          title = 'Shark Reef Sanctuary';
-          bodyContent = '<p>Peaceful trail ending at rocky cliffs with seals and sea lions.</p>';
-          break;
-        case 'juddcove':
-          title = 'Judd Cove Preserve';
-          bodyContent = '<p>A serene spot for sunsets and nature watching.</p>';
-          break;
-      }
 
-      document.getElementById('modal-title').innerHTML = title;
-      document.getElementById('modal-body').innerHTML = bodyContent;
-      document.getElementById('myModal').style.display = "block";
-    }
-
-    function closeModal() {
-      document.getElementById('myModal').style.display = "none";
-    }
-
-    window.addEventListener("scroll", function () {
-      const floatingText = document.querySelectorAll('.floating-text');
-      floatingText.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          el.classList.add('visible');
-        } else {
-          el.classList.remove('visible');
-        }
-      });
-    });
-  </script>
 
 
 </body>
-
+<script src="/js/todo.js"></script>
 </html>
