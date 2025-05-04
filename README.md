@@ -1,11 +1,9 @@
 # Moffat-Bay
 
 ## Purpose of Application
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae justo nec elit gravida tincidunt. Aliquam erat volutpat. Etiam vestibulum fringilla ante, at fermentum magna cursus nec. Donec eget malesuada est. Vestibulum tristique elit vel libero tincidunt, eget hendrerit tortor cursus. Suspendisse lacinia sodales viverra. Nam vel venenatis sem. Sed fringilla sem in diam tincidunt, ac finibus ligula suscipit. Fusce at orci vel nunc aliquam blandit sed ut mauris. Donec a urna vehicula, pharetra nulla nec, viverra est.
+The Moffat Bay Lodge (The Cozy Cavern) web application allows customers to explore the lodge and its offerings freely. The website allows them to book their reservation through our secure registration and login system. Guests are able to view the lodge's attractions, contact information, and other general information without having an account. But, to book a reservation, users must create a free account and log into the website. Registered users are able to select room preferences, input their details, and confirm/look up their stay. 
 
-Praesent ultricies sem vel dapibus pretium. Pellentesque iaculis erat ac arcu suscipit, eget lacinia purus accumsan. Integer ac lorem a justo condimentum interdum. Nullam et sem tincidunt, dapibus massa a, euismod lectus. Sed laoreet viverra magna sed maximus. Quisque non nunc dolor. Mauris sed vehicula leo. Nullam nec porta turpis. Aenean in sapien volutpat, vestibulum elit sed, faucibus nulla. Nam at ligula nunc. Sed condimentum erat non sapien blandit, nec facilisis ex porta.
-
-Donec bibendum, purus et imperdiet rutrum, tellus libero hendrerit diam, nec luctus est magna a nisl. Phasellus tempor finibus velit, a facilisis diam vehicula eget. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris sed lacus justo. Fusce ut ante est. Suspendisse tincidunt risus nec lorem finibus porttitor. Vivamus in tempor sapien, at rhoncus lectus. Integer maximus malesuada erat, ac sodales velit tincidunt sed. Morbi eget justo ut ex vulputate cursus. Sed et turpis non libero faucibus imperdiet. Nulla volutpat, erat ut efficitur tincidunt, ex ante consectetur purus, a euismod turpis lectus non purus.
+Once confirmed, the reservations are stored in the database and may be viewed later through the Reservation Lookup feature. The application has key pages such as the landing page, about us, contact us, attractions, amenities, registration, login, lodge reservation, reservation summary, and reservation lookup. All user data and reservations are securely handled by utilizing proper input validation and password encryption.
 
 <hr>
 
@@ -42,12 +40,12 @@ Donec bibendum, purus et imperdiet rutrum, tellus libero hendrerit diam, nec luc
 
 
 ### Authors
-* Roald.Medendorp
-* Austen.R.Erickson
-* Deena.Linehan
-* Giabella.Apo
-* Kristina.Vasquez
-* Violet.Gonzalez
-* Thunder.Harding
+* Roald Medendorp
+* Austen R Erickson
+* Deena Linehan
+* Giabella Apo
+* Kristina Vasquez
+* Violet Gonzalez
+* Thunder Harding
 
 <hr>
