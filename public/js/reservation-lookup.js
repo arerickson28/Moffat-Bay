@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchResButton = document.getElementById('searchRes');
     const confNumberInput = document.getElementById('confNumber');
     const lastNameInput = document.getElementById('lastName');
-    const checkInInput = document.getElementById('checkIn');
+    const emailInput = document.getElementById('userEmail');
     const errorMessage = document.getElementById('errorMessage');
     const resDetails = document.getElementById('resDetails');
 
@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Validation function to check last name and check-in date
-    function validateReservation(reservation, lastName, checkInDate) {
+    // Validation function to check last name and email
+    function validateReservation(reservation, lastName, userEmail) {
         // Create an array to collect validation errors
         const errors = [];
         
@@ -98,13 +98,14 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn('User information missing, skipping name validation');
         }
         
-        // Check check-in date
-        if (reservation.check_in_date) {
-            if (!areDatesEqual(checkInDate, reservation.check_in_date)) {
-                errors.push('Check-in date does not match reservation');
+        // Check email to ensure it matches
+        if (reservation.User && reservation.User.email) {
+            if (!areStringsEqual(userEmail, reservation.User.email)) {
+                errors.push('Email does not match reservation');
+                console.log('Email comparison:', userEmail, reservation.User.email);
             }
         } else {
-            console.warn('Check-in date missing, skipping date validation');
+            console.warn('User email is missing');
         }
         
         // Return validation results
@@ -235,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchResButton.addEventListener('click', async function() {
             const confNumber = confNumberInput.value.trim();
             const lastName = lastNameInput.value.trim();
-            const checkInDate = checkInInput.value;
+            const email = emailInput.value.trim();
         
             // Basic input validation
             if (!confNumber) {
@@ -256,8 +257,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
         
-            if (!checkInDate) {
-                errorMessage.textContent = 'Please enter your check-in date';
+            if (!email) {
+                errorMessage.textContent = 'Please enter your email';
                 errorMessage.style.display = 'block';
                 return;
             }
@@ -271,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const reservation = await findRes(confNumber);
                 
                 // Validate the reservation details against input
-                const validationResult = validateReservation(reservation, lastName, checkInDate);
+                const validationResult = validateReservation(reservation, lastName, email);
                 
                 if (validationResult.valid) {
                     // Display the reservation if validation passes
@@ -303,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add "Enter" key support to all input fields, this helps with UX
-    [confNumberInput, lastNameInput, checkInInput].forEach(input => {
+    [confNumberInput, lastNameInput, emailInput].forEach(input => {
         if (input) {
             input.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter' && searchResButton) {
