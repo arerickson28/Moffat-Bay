@@ -84,7 +84,7 @@ router.get('/getOneRes/:confId', withAuth, async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['first_name', 'last_name'],
+          attributes: ['first_name', 'last_name', 'email'],
         },
         {
           model: Room,
@@ -119,7 +119,7 @@ router.get('/getAllResForUser/:userId', withAuth, async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['first_name', 'last_name'],
+          attributes: ['first_name', 'last_name', 'email'],
         },
         {
           model: Room,
